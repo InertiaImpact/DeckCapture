@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup><ProjectReference Include="../Domain/DeckCapture.Domain.csproj" /></ItemGroup>
+</Project>

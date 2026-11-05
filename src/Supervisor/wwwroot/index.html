@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>DeckCapture</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <main id="app" aria-label="DeckCapture console">
+    <header class="topbar">
+      <div class="brand"><span class="mark" aria-hidden="true">D</span><div><strong>DeckCapture</strong><small>Capture supervisor</small></div></div>
+      <div class="system" id="system-status" aria-live="polite">Connecting…</div>
+      <form id="auth-form" class="auth"><label for="access-token">Access token</label><input id="access-token" type="password" autocomplete="off" placeholder="Optional on loopback"><button type="submit">Apply</button></form>
+    </header>
+    <nav class="tabs" aria-label="Console sections" role="tablist">
+      <button role="tab" id="tab-capture" aria-controls="panel-capture" aria-selected="true" data-tab="capture">Capture</button>
+      <button role="tab" id="tab-queue" aria-controls="panel-queue" aria-selected="false" data-tab="queue">Transfer queue</button>
+      <button role="tab" id="tab-qc" aria-controls="panel-qc" aria-selected="false" data-tab="qc">QC &amp; jobs</button>
+      <button role="tab" id="tab-config" aria-controls="panel-config" aria-selected="false" data-tab="config">Configuration</button>
+      <button role="tab" id="tab-logs" aria-controls="panel-logs" aria-selected="false" data-tab="logs">Logs</button>
+    </nav>
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    <section id="panel-capture" class="panel" role="tabpanel" aria-labelledby="tab-capture"></section>
+    <section id="panel-queue" class="panel" role="tabpanel" aria-labelledby="tab-queue" hidden></section>
+    <section id="panel-qc" class="panel" role="tabpanel" aria-labelledby="tab-qc" hidden></section>
+    <section id="panel-config" class="panel" role="tabpanel" aria-labelledby="tab-config" hidden></section>
+    <section id="panel-logs" class="panel" role="tabpanel" aria-labelledby="tab-logs" hidden></section>
+  </main>
+  <dialog id="folder-picker" class="folder-dialog" aria-labelledby="folder-dialog-title">
+    <div class="card-head"><h2 id="folder-dialog-title">Choose destination folder</h2><button type="button" data-folder-cancel aria-label="Close folder browser" autofocus>✕</button></div>
+    <p class="folder-path" data-folder-path tabindex="-1"></p>
+    <button type="button" data-folder-up>Up one folder</button>
+    <p data-folder-status role="status" aria-live="polite"></p>
+    <div class="folder-dialog-list" data-folder-list aria-label="Folders"></div>
+    <div class="actions folder-dialog-actions"><button type="button" data-folder-cancel>Cancel</button><button type="button" data-folder-use class="primary">Use folder</button></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "timeZone": "America/Chicago",
+  "cacheRoot": "D:\\DeckCapture\\media",
+  "emergencyReserveBytes": 1073741824,
+  "durationPresetsMinutes": [
+    15,
+    30,
+    60,
+    90,
+    120
+  ],
+  "defaultDurationMinutes": null,
+  "experimentalEndDetection": false,
+  "metadataFields": {
+    "station": {
+      "visible": true,
+      "required": false
+    },
+    "operator": {
+      "visible": true,
+      "required": false
+    },
+    "tapeId": {
+      "visible": false,
+      "required": false
+    },
+    "barcode": {
+      "visible": false,
+      "required": false
+    },
+    "batch": {
+      "visible": false,
+      "required": false
+    },
+    "collection": {
+      "visible": false,
+      "required": false
+    },
+    "title": {
+      "visible": false,
+      "required": false
+    },
+    "description": {
+      "visible": false,
+      "required": false
+    },
+    "notes": {
+      "visible": false,
+      "required": false
+    }
+  },
+  "channels": [
+    {
+      "id": "ch1",
+      "label": "Channel 01",
+      "deck": "Synthetic test input",
+      "sourceKind": "Synthetic",
+      "deviceName": "synthetic-1",
+      "formatCode": "auto",
+      "syntheticPattern": "testsrc2",
+      "audioChannels": 2
+    },
+    {
+      "id": "ch2",
+      "label": "Channel 02",
+      "deck": "Synthetic test input",
+      "sourceKind": "Synthetic",
+      "deviceName": "synthetic-2",
+      "formatCode": "auto",
+      "syntheticPattern": "testsrc2",
+      "audioChannels": 2
+    },
+    {
+      "id": "ch3",
+      "label": "Channel 03",
+      "deck": "Synthetic test input",
+      "sourceKind": "Synthetic",
+      "deviceName": "synthetic-3",
+      "formatCode": "auto",
+      "syntheticPattern": "testsrc2",
+      "audioChannels": 2
+    },
+    {
+      "id": "ch4",
+      "label": "Channel 04",
+      "deck": "Synthetic test input",
+      "sourceKind": "Synthetic",
+      "deviceName": "synthetic-4",
+      "formatCode": "auto",
+      "syntheticPattern": "testsrc2",
+      "audioChannels": 2
+    }
+  ],
+  "destinations": [
+    {
+      "id": "station-delivery",
+      "label": "Station delivery",
+      "root": "\\\\file-server\\tape-delivery"
+    }
+  ],
+  "capture": {
+    "ffmpegPath": "ffmpeg",
+    "ffprobePath": "ffprobe",
+    "preRollSeconds": 5,
+    "syntheticWidth": 640,
+    "syntheticHeight": 360,
+    "syntheticFramesPerSecond": 25,
+    "maximumArmedMinutes": 15,
+    "monitoringTimeoutMinutes": 0,
+    "encoderThreads": 2,
+    "livePreviewEnabled": true,
+    "reservationBytesPerSecond": 30000000,
+    "offlineQcEnabled": false
+  },
+  "detection": {
+    "defaultEndMode": "Alert",
+    "minimumRecordedSeconds": 300,
+    "blackSeconds": 120,
+    "blackRatio": 0.99,
+    "silenceDbfs": -50,
+    "graceSeconds": 30,
+    "startConfirmationSeconds": 2
+  },
+  "transfer": {
+    "scheduleEnabled": true,
+    "windows": [
+      {
+        "startDays": [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "startLocal": "22:00",
+        "endLocal": "06:00"
+      }
+    ],
+    "maximumConcurrent": 2,
+    "perTransferMiBps": 20,
+    "outsideWindowMiBps": 2,
+    "aggregateMiBps": 40
+  },
+  "notifications": {
+    "enabled": false,
+    "host": "",
+    "port": 587,
+    "tlsMode": "StartTls",
+    "sender": "",
+    "recipients": [],
+    "username": "",
+    "credentialReference": "",
+    "captureGroupComplete": true,
+    "transferWindowClosed": true,
+    "dailyDigestLocalTime": null
+  }
+}

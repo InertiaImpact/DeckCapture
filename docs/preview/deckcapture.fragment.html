@@ -1,0 +1,832 @@
+<!-- DECKCAPTURE_PREVIEW_SOURCE_START -->
+<div id="deckcapture-console" class="viz-carousel" aria-label="DeckCapture console layouts">
+  <section data-variant="Console" aria-label="Channel console">
+    <div id="th-console" class="th-app" data-layout="console" aria-label="DeckCapture channel console"></div>
+  </section>
+  <section data-variant="Multiview" aria-label="Multiview recording console" hidden>
+    <div id="th-monitors" class="th-app" data-layout="monitors" aria-label="DeckCapture multiview console"></div>
+  </section>
+</div>
+<style>
+#deckcapture-console .th-app {
+  --th-bg: light-dark(#f3f5f8, #11161e);
+  --th-panel: light-dark(#ffffff, #1a222d);
+  --th-raised: light-dark(#f7f9fb, #202c39);
+  --th-text: light-dark(#182838, #e4edf7);
+  --th-muted: light-dark(#596b7c, #afbed0);
+  --th-line: light-dark(#d8e0e8, #364454);
+  --th-accent: light-dark(#006b5d, #81dfc8);
+  --th-accent-ink: light-dark(#ffffff, #112d26);
+  --th-tint: light-dark(#e5f4ee, #183c33);
+  --th-warn: light-dark(#875300, #ffcc7a);
+  --th-warn-bg: light-dark(#fff4df, #3d311c);
+  --th-red: light-dark(#b1303c, #ff9da5);
+  --th-red-bg: light-dark(#fff0f1, #46252d);
+  --th-blue: light-dark(#255e9b, #a0c8ff);
+  --th-blue-bg: light-dark(#eaf2ff, #243853);
+  --th-scope-bg: light-dark(#f0f6f5, #101f24);
+  --th-gap: 18px;
+  --th-preview-height: 110px;
+  box-sizing: border-box; color: var(--th-text); background: var(--th-bg);
+  font-family: "Segoe UI", Inter, system-ui, sans-serif; font-size: 13px;
+  line-height: 1.45; border: 1px solid var(--th-line); border-radius: 14px;
+  overflow: clip; min-height: 960px; display: flex; flex-direction: column;
+}
+#deckcapture-console .th-app * { box-sizing: border-box; }
+#deckcapture-console .th-app [hidden] { display: none !important; }
+#deckcapture-console .th-app button, #deckcapture-console .th-app input,
+#deckcapture-console .th-app select, #deckcapture-console .th-app textarea { font: inherit; }
+#deckcapture-console .th-app button { color: inherit; }
+#deckcapture-console .th-app h1, #deckcapture-console .th-app h2,
+#deckcapture-console .th-app h3, #deckcapture-console .th-app p { margin: 0; }
+#deckcapture-console .th-app h1 { font-size: 24px; font-weight: 500; letter-spacing: -.6px; line-height: 1.2; }
+#deckcapture-console .th-app h2 { font-size: 16px; font-weight: 500; }
+#deckcapture-console .th-app h3 { font-size: 14px; font-weight: 500; }
+#deckcapture-console .th-app strong { font-weight: 500; }
+#deckcapture-console .th-app svg { flex-shrink: 0; }
+#deckcapture-console .th-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; background: var(--th-panel); border-bottom: 1px solid var(--th-line); padding-right: 100px; }
+#deckcapture-console .th-brand { display: flex; align-items: center; gap: 10px; }
+#deckcapture-console .th-mark { background: var(--th-accent); color: var(--th-accent-ink); width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 16px; font-weight: 500; }
+#deckcapture-console .th-brand-name { font-size: 19px; font-weight: 500; letter-spacing: -.5px; }
+#deckcapture-console .th-small { font-size: 12px; color: var(--th-muted); }
+#deckcapture-console .th-muted { color: var(--th-muted); }
+#deckcapture-console .th-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--th-muted); font-weight: 500; }
+#deckcapture-console .th-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; line-height: 1.3; color: var(--th-muted); background: var(--th-raised); white-space: nowrap; }
+#deckcapture-console .th-tag[data-tone="recording"] { color: var(--th-red); background: var(--th-red-bg); }
+#deckcapture-console .th-tag[data-tone="ready"], #deckcapture-console .th-tag[data-tone="delivered"] { color: var(--th-accent); background: var(--th-tint); }
+#deckcapture-console .th-tag[data-tone="waiting"], #deckcapture-console .th-tag[data-tone="review"] { color: var(--th-warn); background: var(--th-warn-bg); }
+#deckcapture-console .th-tag[data-tone="copying"], #deckcapture-console .th-tag[data-tone="verifying"] { color: var(--th-blue); background: var(--th-blue-bg); }
+#deckcapture-console .th-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; display: inline-block; }
+#deckcapture-console .th-shell { display: grid; grid-template-columns: 146px minmax(0, 1fr); flex: 1; }
+#deckcapture-console .th-sidebar { background: var(--th-panel); border-right: 1px solid var(--th-line); padding: 22px 10px; display: flex; flex-direction: column; gap: 6px; }
+#deckcapture-console .th-nav { display: flex; align-items: center; gap: 10px; background: transparent; border: 0; border-radius: 7px; padding: 10px; width: 100%; text-align: left; min-height: 40px; }
+#deckcapture-console .th-nav[aria-current="page"] { color: var(--th-accent); background: var(--th-tint); font-weight: 500; }
+#deckcapture-console .th-nav:hover { background: var(--th-raised); }
+#deckcapture-console .th-nav[aria-current="page"]:hover { background: var(--th-tint); }
+#deckcapture-console .th-count { margin-left: auto; font-size: 11px; min-width: 19px; text-align: center; }
+#deckcapture-console .th-host { margin-top: auto; padding: 22px 9px 0; display: grid; gap: 5px; }
+#deckcapture-console .th-main { min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: var(--th-gap); }
+#deckcapture-console .th-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+#deckcapture-console .th-title-copy { display: grid; gap: 6px; }
+#deckcapture-console .th-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+#deckcapture-console .th-between { justify-content: space-between; }
+#deckcapture-console .th-stack { display: grid; gap: 12px; min-width: 0; }
+#deckcapture-console .th-btn { border: 1px solid var(--th-line); border-radius: 7px; padding: 8px 11px; min-height: 35px; background: var(--th-panel); display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-align: center; text-decoration: none; }
+#deckcapture-console .th-btn:hover { background: var(--th-raised); }
+#deckcapture-console .th-btn.th-primary { background: var(--th-accent); color: var(--th-accent-ink); border-color: var(--th-accent); }
+#deckcapture-console .th-btn.th-primary:hover { filter: brightness(.95); }
+#deckcapture-console .th-btn.th-danger { background: var(--th-red-bg); color: var(--th-red); border-color: var(--th-red); }
+#deckcapture-console .th-btn.th-quiet { background: transparent; border-color: transparent; color: var(--th-muted); }
+#deckcapture-console .th-btn[disabled] { opacity: .5; cursor: not-allowed; }
+#deckcapture-console .th-num { font-variant-numeric: tabular-nums; }
+#deckcapture-console .th-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--th-line); border-radius: 9px; background: var(--th-panel); }
+#deckcapture-console .th-summary-item { padding: 14px 16px; display: grid; gap: 4px; min-width: 0; }
+#deckcapture-console .th-summary-item + .th-summary-item { border-left: 1px solid var(--th-line); }
+#deckcapture-console .th-value { font-size: 20px; font-weight: 500; letter-spacing: -.4px; }
+#deckcapture-console .th-capture-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .84fr); gap: var(--th-gap); align-items: start; }
+#deckcapture-console .th-channel-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+#deckcapture-console .th-channel { border: 1px solid var(--th-line); border-radius: 9px; background: var(--th-panel); padding: 0; min-width: 0; text-align: left; width: 100%; overflow: clip; }
+#deckcapture-console .th-channel[aria-pressed="true"] { border-color: var(--th-accent); box-shadow: 0 0 0 1px var(--th-accent); }
+#deckcapture-console .th-channel:hover { border-color: var(--th-accent); }
+#deckcapture-console .th-channel-top { padding: 11px 10px 9px; display: grid; gap: 6px; }
+#deckcapture-console .th-channel-title { display: flex; align-items: center; justify-content: space-between; gap: 4px; flex-wrap: wrap; }
+#deckcapture-console .th-channel-meta { font-size: 11px; color: var(--th-muted); }
+#deckcapture-console .th-feed { height: var(--th-preview-height); position: relative; overflow: hidden; background: #0d131b; color: #eaf3ff; display: flex; align-items: center; justify-content: center; }
+#deckcapture-console .th-feed[data-signal="program"] { background: linear-gradient(125deg, #1b2e4b 0%, #233e55 54%, #324f5a 54%, #182c43 100%); }
+#deckcapture-console .th-feed[data-signal="black"] { background: #080a0d; }
+#deckcapture-console .th-feed[data-signal="nosignal"] { background: repeating-linear-gradient(0deg,#10151e 0px,#10151e 2px,#151c26 3px,#151c26 4px); }
+#deckcapture-console .th-feed-kicker { position: absolute; top: 8px; left: 9px; font-size: 10px; letter-spacing: 1px; color: #c5d3e7; }
+#deckcapture-console .th-feed-center { text-align: center; display: grid; gap: 3px; }
+#deckcapture-console .th-feed-title { font-size: 16px; font-weight: 500; letter-spacing: 1.5px; }
+#deckcapture-console .th-feed-sub { font-size: 10px; letter-spacing: 1px; color: #ccd9e8; }
+#deckcapture-console .th-feed-lower { position: absolute; bottom: 10px; left: 10px; right: 10px; background: #0d2137; border-left: 3px solid #89d5c1; padding: 6px 8px; font-size: 10px; letter-spacing: .8px; }
+#deckcapture-console .th-channel-bottom { padding: 10px; display: grid; gap: 7px; }
+#deckcapture-console .th-file { font-size: 11px; overflow-wrap: anywhere; color: var(--th-muted); }
+#deckcapture-console .th-mini-time { display: flex; justify-content: space-between; align-items: baseline; gap: 5px; font-size: 11px; color: var(--th-muted); }
+#deckcapture-console .th-mini-time strong { color: var(--th-text); font-size: 13px; }
+#deckcapture-console .th-meter { display: flex; gap: 3px; align-items: flex-end; height: 12px; }
+#deckcapture-console .th-meter span { width: 4px; background: var(--th-accent); opacity: .7; border-radius: 1px; }
+#deckcapture-console .th-note { display: flex; gap: 9px; align-items: flex-start; font-size: 12px; color: var(--th-muted); padding: 11px 12px; background: var(--th-raised); border-radius: 7px; overflow-wrap: anywhere; }
+#deckcapture-console .th-note[data-tone="warning"] { background: var(--th-warn-bg); color: var(--th-warn); }
+#deckcapture-console .th-note[data-tone="success"] { background: var(--th-tint); color: var(--th-accent); }
+#deckcapture-console .th-panel { background: var(--th-panel); border: 1px solid var(--th-line); border-radius: 10px; min-width: 0; }
+#deckcapture-console .th-panel-head { padding: 15px 16px; border-bottom: 1px solid var(--th-line); display: grid; gap: 5px; }
+#deckcapture-console .th-panel-body { padding: 16px; display: grid; gap: 14px; }
+#deckcapture-console .th-field { display: grid; gap: 6px; min-width: 0; font-size: 12px; }
+#deckcapture-console .th-field > span:first-child { font-weight: 500; }
+#deckcapture-console .th-field input, #deckcapture-console .th-field select,
+#deckcapture-console .th-field textarea { width: 100%; min-width: 0; padding: 9px 10px; border: 1px solid var(--th-line); border-radius: 6px; color: var(--th-text); background: var(--th-panel); }
+#deckcapture-console .th-field input[readonly] { color: var(--th-muted); background: var(--th-raised); }
+#deckcapture-console .th-fields-two { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+#deckcapture-console .th-presets { display: flex; flex-wrap: wrap; gap: 5px; }
+#deckcapture-console .th-preset { padding: 6px 8px; min-height: 32px; border: 1px solid var(--th-line); color: var(--th-muted); border-radius: 6px; background: var(--th-panel); }
+#deckcapture-console .th-preset[aria-pressed="true"] { border-color: var(--th-accent); color: var(--th-accent); background: var(--th-tint); }
+#deckcapture-console .th-path { font-size: 11px; color: var(--th-muted); overflow-wrap: anywhere; }
+#deckcapture-console .th-check { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; }
+#deckcapture-console .th-check input { accent-color: var(--th-accent); margin: 3px 0 0; flex-shrink: 0; }
+#deckcapture-console .th-divider { height: 1px; background: var(--th-line); }
+#deckcapture-console .th-save-actions { display: grid; gap: 7px; }
+#deckcapture-console .th-big-start { padding: 18px 12px; font-size: 15px; width: 100%; font-weight: 500; letter-spacing: .3px; min-height: 62px; }
+#deckcapture-console .th-job-meta { display: grid; gap: 8px; }
+#deckcapture-console .th-meta-row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+#deckcapture-console .th-meta-row > :last-child { text-align: right; overflow-wrap: anywhere; }
+#deckcapture-console .th-timer { font-size: 40px; line-height: 1.2; letter-spacing: -1.5px; text-align: center; padding: 8px 0; font-weight: 500; }
+#deckcapture-console .th-recording-time { color: var(--th-red); }
+#deckcapture-console .th-center { text-align: center; }
+#deckcapture-console .th-progress { display: block; border: 0; width: 100%; height: 5px; background: var(--th-line); accent-color: var(--th-accent); border-radius: 3px; overflow: hidden; }
+#deckcapture-console .th-progress::-webkit-progress-bar { background: var(--th-line); border-radius: 3px; }
+#deckcapture-console .th-progress::-webkit-progress-value { background: var(--th-accent); border-radius: 3px; }
+#deckcapture-console .th-scope { min-width: 0; }
+#deckcapture-console .th-scope canvas { width: 100%; height: 135px; display: block; background: var(--th-scope-bg); border-radius: 6px; }
+#deckcapture-console .th-tabs { display: flex; gap: 5px; flex-wrap: wrap; }
+#deckcapture-console .th-tab { background: transparent; border: 0; border-radius: 5px; padding: 6px 8px; font-size: 12px; color: var(--th-muted); }
+#deckcapture-console .th-tab[aria-pressed="true"] { background: var(--th-tint); color: var(--th-accent); }
+#deckcapture-console .th-scope-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 5px; margin-bottom: 9px; }
+#deckcapture-console .th-demo { padding: 11px 14px; border: 1px dashed var(--th-line); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+#deckcapture-console .th-demo select { color: var(--th-text); background: var(--th-panel); border: 1px solid var(--th-line); border-radius: 5px; padding: 6px; min-width: 0; max-width: 100%; font-size: 12px; }
+#deckcapture-console .th-demo-label { font-size: 11px; color: var(--th-muted); }
+#deckcapture-console .th-foot { border-top: 1px solid var(--th-line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 11px 18px; color: var(--th-muted); background: var(--th-panel); font-size: 11px; }
+#deckcapture-console .th-toast { display: flex; gap: 9px; align-items: flex-start; color: var(--th-accent); background: var(--th-tint); padding: 11px 14px; border-radius: 7px; font-size: 12px; }
+#deckcapture-console .th-toast[data-error="true"] { color: var(--th-red); background: var(--th-red-bg); }
+#deckcapture-console .th-focus-list { display: grid; gap: 6px; }
+#deckcapture-console .th-channel.th-compact { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 7px; padding: 11px 12px; align-items: center; }
+#deckcapture-console .th-compact .th-channel-top { padding: 0; }
+#deckcapture-console .th-focus-preview .th-feed { height: 170px; border-radius: 8px; }
+#deckcapture-console .th-focus-preview .th-feed-title { font-size: 23px; }
+#deckcapture-console .th-settings-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; align-items: start; }
+#deckcapture-console .th-setting-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--th-line); }
+#deckcapture-console .th-setting-row:last-child { border-bottom: 0; }
+#deckcapture-console .th-setting-row > div { display: grid; gap: 4px; min-width: 0; }
+#deckcapture-console .th-setting-row input[type="checkbox"] { accent-color: var(--th-accent); width: 17px; height: 17px; }
+#deckcapture-console .th-window { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; align-items: center; padding: 17px 18px; background: var(--th-panel); border: 1px solid var(--th-line); border-radius: 9px; }
+#deckcapture-console .th-window-copy { display: grid; gap: 7px; }
+#deckcapture-console .th-queue-list { display: grid; gap: 0; }
+#deckcapture-console .th-queue-row { display: grid; grid-template-columns: minmax(0,1fr) 115px 116px; align-items: center; gap: 14px; padding: 17px 16px; border-bottom: 1px solid var(--th-line); }
+#deckcapture-console .th-queue-row:last-child { border-bottom: 0; }
+#deckcapture-console .th-queue-name { overflow-wrap: anywhere; font-weight: 500; }
+#deckcapture-console .th-queue-status { display: grid; gap: 7px; }
+#deckcapture-console .th-queue-actions { display: grid; gap: 5px; }
+#deckcapture-console .th-queue-caption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+#deckcapture-console .th-rate-label { color: var(--th-muted); font-size: 11px; }
+#deckcapture-console .th-qc-layout { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 16px; }
+#deckcapture-console .th-qc-preview { padding: 16px; display: grid; gap: 14px; }
+#deckcapture-console .th-qc-preview .th-feed { height: 180px; border-radius: 7px; }
+#deckcapture-console .th-events { display: grid; }
+#deckcapture-console .th-event { padding: 12px 0; border-bottom: 1px solid var(--th-line); display: grid; gap: 5px; }
+#deckcapture-console .th-event:last-child { border: 0; }
+#deckcapture-console .th-timeline { display: grid; gap: 7px; }
+#deckcapture-console .th-timeline canvas { height: 145px; width: 100%; background: var(--th-scope-bg); border-radius: 7px; }
+#deckcapture-console .th-reports { display: grid; gap: 12px; }
+#deckcapture-console .th-report { padding: 16px; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; }
+#deckcapture-console .th-modal { padding: 18px; background: var(--th-panel); border: 1px solid var(--th-accent); border-radius: 10px; display: grid; gap: 15px; }
+#deckcapture-console .th-modal pre { white-space: pre-wrap; word-break: break-word; padding: 14px; background: var(--th-raised); border-radius: 6px; font-size: 12px; margin: 0; }
+#deckcapture-console .th-modal textarea { min-height: 235px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; }
+#deckcapture-console .th-folder { padding: 10px 12px; display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; background: var(--th-panel); border: 1px solid var(--th-line); border-radius: 6px; }
+#deckcapture-console .th-folder[aria-pressed="true"] { background: var(--th-tint); border-color: var(--th-accent); color: var(--th-accent); }
+#deckcapture-console .th-key { background: var(--th-raised); color: var(--th-muted); border-radius: 4px; padding: 2px 5px; font-size: 10px; }
+@media (max-width: 950px) {
+  #deckcapture-console .th-shell { grid-template-columns: 120px minmax(0,1fr); }
+  #deckcapture-console .th-main { padding: 18px; }
+  #deckcapture-console .th-nav { padding: 9px 7px; gap: 7px; font-size: 12px; }
+  #deckcapture-console .th-capture-grid { grid-template-columns: minmax(0,1fr) minmax(265px,.9fr); gap: 14px; }
+  #deckcapture-console .th-channel-grid { gap: 9px; }
+  #deckcapture-console .th-channel-top { padding: 9px 8px; }
+  #deckcapture-console .th-channel-bottom { padding: 9px 8px; }
+  #deckcapture-console .th-channel-title { font-size: 12px; }
+}
+@media (max-width: 760px) {
+  #deckcapture-console .th-shell { display: flex; flex-direction: column; }
+  #deckcapture-console .th-sidebar { flex-direction: row; flex-wrap: wrap; gap: 3px; padding: 8px 12px; border-right: 0; border-bottom: 1px solid var(--th-line); }
+  #deckcapture-console .th-nav { width: auto; min-height: 36px; }
+  #deckcapture-console .th-host { display: none; }
+  #deckcapture-console .th-head { padding: 14px 18px; padding-right: 95px; }
+  #deckcapture-console .th-head-right { display: none; }
+  #deckcapture-console .th-queue-row { grid-template-columns: minmax(0,1fr) 110px; }
+  #deckcapture-console .th-queue-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; }
+}
+@media (max-width: 610px) {
+  #deckcapture-console .th-app { min-height: 1580px; }
+  #deckcapture-console .th-main { padding: 16px 12px; }
+  #deckcapture-console .th-capture-grid, #deckcapture-console .th-settings-grid,
+  #deckcapture-console .th-qc-layout { grid-template-columns: minmax(0,1fr); }
+  #deckcapture-console .th-summary-item { padding: 12px 10px; }
+  #deckcapture-console .th-value { font-size: 18px; }
+  #deckcapture-console .th-summary-item .th-small { font-size: 11px; }
+  #deckcapture-console .th-window { grid-template-columns: minmax(0,1fr); }
+  #deckcapture-console .th-field input, #deckcapture-console .th-field select,
+  #deckcapture-console .th-field textarea { font-size: 16px; }
+  #deckcapture-console .th-demo { align-items: stretch; }
+  #deckcapture-console .th-demo > .th-row { width: 100%; }
+}
+@media (max-width: 370px) {
+  #deckcapture-console .th-channel-grid { grid-template-columns: minmax(0,1fr); }
+  #deckcapture-console .th-fields-two { grid-template-columns: minmax(0,1fr); }
+  #deckcapture-console .th-summary { grid-template-columns: minmax(0,1fr); }
+  #deckcapture-console .th-summary-item + .th-summary-item { border-left: 0; border-top: 1px solid var(--th-line); }
+  #deckcapture-console .th-queue-row { grid-template-columns: minmax(0,1fr); }
+  #deckcapture-console .th-queue-actions { grid-column: auto; }
+  #deckcapture-console .th-head { padding-left: 12px; }
+}
+@media (pointer: coarse) {
+  #deckcapture-console .th-btn, #deckcapture-console .th-nav,
+  #deckcapture-console .th-preset, #deckcapture-console .th-tab { min-height: 44px; }
+}
+
+#deckcapture-console .th-app {
+  --th-bg: light-dark(#f1f1f1, #202020);
+  --th-panel: light-dark(#ffffff, #252525);
+  --th-raised: light-dark(#e8e8e8, #2d2d2d);
+  --th-text: light-dark(#202020, #ededed);
+  --th-muted: light-dark(#5a5a5a, #b5b5b5);
+  --th-line: light-dark(#c4c4c4, #484848);
+  --th-accent: light-dark(#005fb8, #9ac7fa);
+  --th-accent-ink: light-dark(#ffffff, #152b43);
+  --th-tint: light-dark(#e4edf7, #29384a);
+  --th-warn: light-dark(#805400, #e9c06e);
+  --th-warn-bg: light-dark(#fff8e6, #3c3527);
+  --th-red: light-dark(#b52b32, #f1a1a1);
+  --th-red-bg: light-dark(#faeeee, #3f2828);
+  --th-blue: light-dark(#295c91, #a7c8e8);
+  --th-blue-bg: light-dark(#edf2f8, #2b3541);
+  --th-scope-bg: light-dark(#f8f8f8, #101310);
+  --th-scope-trace: light-dark(#386e3d, #8bca86);
+  --th-gap: 12px;
+  --th-preview-height: 145px;
+  min-height: 890px;
+  border-radius: 2px;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: none;
+}
+#deckcapture-console .th-app h1 { font-size: 18px; letter-spacing: 0; line-height: 1.3; }
+#deckcapture-console .th-app h2 { font-size: 14px; letter-spacing: 0; }
+#deckcapture-console .th-app h3 { font-size: 13px; }
+#deckcapture-console .th-head { padding: 10px 16px; padding-right: 100px; min-height: 44px; background: var(--th-raised); }
+#deckcapture-console .th-brand { gap: 10px; }
+#deckcapture-console .th-brand-name { font-size: 14px; letter-spacing: 0; }
+#deckcapture-console .th-brand-sub { padding-left: 10px; border-left: 1px solid var(--th-line); font-size: 12px; color: var(--th-muted); }
+#deckcapture-console .th-head-right { font-size: 11px; }
+#deckcapture-console .th-shell { display: flex; flex-direction: column; }
+#deckcapture-console .th-sidebar { flex-direction: row; flex-wrap: wrap; gap: 0; padding: 0 10px; background: var(--th-panel); border-right: 0; border-bottom: 1px solid var(--th-line); }
+#deckcapture-console .th-nav { width: auto; border-radius: 0; min-height: 35px; padding: 7px 13px; gap: 6px; border-bottom: 2px solid transparent; }
+#deckcapture-console .th-nav[aria-current="page"], #deckcapture-console .th-nav[aria-current="page"]:hover { background: transparent; color: var(--th-text); border-bottom-color: var(--th-accent); }
+#deckcapture-console .th-nav:hover { background: var(--th-raised); }
+#deckcapture-console .th-count { margin-left: 0; font-size: 11px; color: var(--th-muted); }
+#deckcapture-console .th-main { padding: 14px 16px; gap: var(--th-gap); }
+#deckcapture-console .th-label { text-transform: none; letter-spacing: 0; font-size: 12px; }
+#deckcapture-console .th-title-copy { gap: 3px; }
+#deckcapture-console .th-title-copy > .th-label { display: none; }
+#deckcapture-console .th-tag { background: transparent !important; border: 0; border-radius: 0; padding: 0; font-size: 12px; font-weight: 400; color: var(--th-muted); gap: 5px; }
+#deckcapture-console .th-tag .th-dot { display: none; }
+#deckcapture-console .th-tag[data-tone="recording"] { color: var(--th-red); font-weight: 500; }
+#deckcapture-console .th-tag[data-tone="recording"] .th-dot { display: inline-block; width: 6px; height: 6px; }
+#deckcapture-console .th-tag[data-tone="ready"], #deckcapture-console .th-tag[data-tone="delivered"] { color: var(--th-muted); }
+#deckcapture-console .th-tag[data-tone="waiting"], #deckcapture-console .th-tag[data-tone="review"] { color: var(--th-warn); }
+#deckcapture-console .th-btn { border-radius: 2px; min-height: 32px; padding: 6px 11px; box-shadow: none; }
+#deckcapture-console .th-btn.th-primary { color: var(--th-text); background: var(--th-raised); border-color: var(--th-line); font-weight: 500; }
+#deckcapture-console .th-btn.th-primary:hover { filter: none; background: var(--th-tint); }
+#deckcapture-console .th-big-start.th-primary { background: light-dark(#ae2026,#b93238); color: #ffffff; border-color: light-dark(#941b20,#b93238); font-size: 15px; min-height: 52px; padding: 12px; letter-spacing: .3px; }
+#deckcapture-console .th-btn.th-danger { background: var(--th-panel); border-color: var(--th-red); }
+#deckcapture-console .th-summary { display: flex; flex-wrap: wrap; background: transparent; border: 0; border-bottom: 1px solid var(--th-line); border-radius: 0; }
+#deckcapture-console .th-summary-item { padding: 8px 16px 8px 0; display: flex; align-items: baseline; gap: 8px; }
+#deckcapture-console .th-summary-item + .th-summary-item { border-left: 0; }
+#deckcapture-console .th-value { font-size: 16px; letter-spacing: 0; }
+#deckcapture-console .th-panel { border: 1px solid var(--th-line); border-radius: 2px; background: var(--th-panel); box-shadow: none; }
+#deckcapture-console .th-panel-head { background: var(--th-raised); padding: 9px 12px; gap: 3px; }
+#deckcapture-console .th-panel-body { padding: 12px; gap: 12px; }
+#deckcapture-console .th-field { gap: 4px; }
+#deckcapture-console .th-field input, #deckcapture-console .th-field select, #deckcapture-console .th-field textarea { padding: 6px 8px; border-radius: 2px; }
+#deckcapture-console .th-preset { border-radius: 2px; min-height: 28px; padding: 4px 8px; }
+#deckcapture-console .th-preset[aria-pressed="true"] { color: var(--th-text); border-color: var(--th-accent); background: var(--th-tint); }
+#deckcapture-console .th-tabs { gap: 0; border-bottom: 1px solid var(--th-line); }
+#deckcapture-console .th-tab { border-radius: 0; padding: 6px 9px; border-bottom: 2px solid transparent; }
+#deckcapture-console .th-tab[aria-pressed="true"] { color: var(--th-text); background: transparent; border-bottom-color: var(--th-accent); }
+#deckcapture-console .th-note { border-radius: 0; background: transparent; padding: 5px 0; gap: 7px; }
+#deckcapture-console .th-note[data-tone="warning"] { background: transparent; color: var(--th-warn); }
+#deckcapture-console .th-note[data-tone="success"] { background: transparent; color: var(--th-muted); }
+#deckcapture-console .th-toast { border-radius: 0; border-left: 3px solid var(--th-accent); padding: 7px 10px; color: var(--th-text); background: var(--th-tint); }
+#deckcapture-console .th-toast[data-error="true"] { border-left-color: var(--th-red); color: var(--th-red); background: var(--th-red-bg); }
+#deckcapture-console .th-progress, #deckcapture-console .th-progress::-webkit-progress-bar, #deckcapture-console .th-progress::-webkit-progress-value { border-radius: 0; }
+#deckcapture-console .th-timer { font-family: Consolas, "SFMono-Regular", monospace; font-size: 36px; letter-spacing: -1px; padding: 6px 0; }
+#deckcapture-console .th-capture-grid { grid-template-columns: minmax(0,1.15fr) minmax(300px,.85fr); gap: 14px; }
+#deckcapture-console .th-console-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+#deckcapture-console .th-console-title h1 { font-size: 16px; }
+#deckcapture-console .th-input-table { border: 1px solid var(--th-line); background: var(--th-panel); }
+#deckcapture-console .th-input-heading, #deckcapture-console .th-input-row { display: grid; grid-template-columns: 38px 150px 100px 95px minmax(0,1fr) 84px; gap: 10px; padding: 8px 10px; align-items: center; }
+#deckcapture-console .th-input-heading { color: var(--th-muted); background: var(--th-raised); font-size: 11px; border-bottom: 1px solid var(--th-line); }
+#deckcapture-console .th-input-row { width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--th-line); color: var(--th-text); background: var(--th-panel); font-size: 12px; min-height: 40px; border-left: 3px solid transparent; padding-left: 7px; }
+#deckcapture-console .th-input-row:last-child { border-bottom: 0; }
+#deckcapture-console .th-input-row[aria-pressed="true"] { background: var(--th-tint); border-left-color: var(--th-accent); }
+#deckcapture-console .th-input-row:hover { background: var(--th-raised); }
+#deckcapture-console .th-input-row[aria-pressed="true"]:hover { background: var(--th-tint); }
+#deckcapture-console .th-input-row > span { min-width: 0; overflow-wrap: anywhere; }
+#deckcapture-console .th-input-filename { font-size: 11px; color: var(--th-muted); }
+#deckcapture-console .th-input-remaining { font-family: Consolas, monospace; text-align: right; }
+#deckcapture-console .th-monitor-block { display: grid; gap: 10px; align-content: start; min-width: 0; }
+#deckcapture-console .th-monitor-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 12px; }
+#deckcapture-console .th-monitor-block > .th-feed { height: calc(var(--th-preview-height) * 1.6); border: 1px solid var(--th-line); }
+#deckcapture-console .th-feed { border-radius: 0 !important; background: #080808; }
+#deckcapture-console .th-feed[data-signal="program"] { background: #080808; }
+#deckcapture-console .th-feed[data-signal="black"] { background: #080808; }
+#deckcapture-console .th-feed[data-signal="nosignal"] { background: #161616; }
+#deckcapture-console .th-colorbars { position: absolute; inset: 0 0 23%; display: flex; }
+#deckcapture-console .th-colorbars span { flex: 1; }
+#deckcapture-console .th-colorbars span:nth-child(1) { background: #bfbfbf; }
+#deckcapture-console .th-colorbars span:nth-child(2) { background: #bfbf00; }
+#deckcapture-console .th-colorbars span:nth-child(3) { background: #00bfbf; }
+#deckcapture-console .th-colorbars span:nth-child(4) { background: #00bf00; }
+#deckcapture-console .th-colorbars span:nth-child(5) { background: #bf00bf; }
+#deckcapture-console .th-colorbars span:nth-child(6) { background: #bf0000; }
+#deckcapture-console .th-colorbars span:nth-child(7) { background: #0000bf; }
+#deckcapture-console .th-feed-kicker { z-index: 1; background: #0b0b0b; color: #e7e7e7; font-size: 10px; letter-spacing: 0; padding: 2px 4px; top: 6px; left: 6px; }
+#deckcapture-console .th-feed-title { font-size: 13px; letter-spacing: 0; font-family: Consolas, monospace; font-weight: 400; }
+#deckcapture-console .th-feed-sub { font-size: 10px; letter-spacing: 0; }
+#deckcapture-console .th-feed-bottom { position: absolute; left: 8px; right: 8px; bottom: 7px; color: #c6c6c6; font-size: 10px; display: flex; justify-content: space-between; gap: 8px; font-family: Consolas, monospace; }
+#deckcapture-console .th-channel-grid { gap: 10px; }
+#deckcapture-console .th-channel { border-radius: 0; border: 1px solid var(--th-line); box-shadow: none; }
+#deckcapture-console .th-channel[aria-pressed="true"] { box-shadow: none; border-color: var(--th-accent); }
+#deckcapture-console .th-channel-top { background: var(--th-raised); padding: 7px 9px; gap: 3px; }
+#deckcapture-console .th-channel-title { font-size: 12px; }
+#deckcapture-console .th-channel-bottom { padding: 6px 8px; gap: 4px; }
+#deckcapture-console .th-channel .th-mini-time { display: grid; grid-template-columns: minmax(0,1fr) auto; }
+#deckcapture-console .th-channel .th-mini-time > span { min-width: 0; overflow-wrap: anywhere; }
+#deckcapture-console .th-channel .th-mini-time > strong { white-space: nowrap; }
+#deckcapture-console .th-scope canvas, #deckcapture-console .th-timeline canvas { border: 1px solid var(--th-line); border-radius: 0; }
+#deckcapture-console .th-scope-head { margin-bottom: 5px; }
+#deckcapture-console .th-demo { border: 0; border-top: 1px solid var(--th-line); padding: 9px 0 0; border-radius: 0; }
+#deckcapture-console .th-demo select { border-radius: 2px; padding: 5px 7px; }
+#deckcapture-console .th-foot { margin-top: auto; background: var(--th-raised); padding: 7px 12px; border-top: 1px solid var(--th-line); font-size: 11px; }
+#deckcapture-console .th-status-strip { display: flex; gap: 12px; flex-wrap: wrap; }
+#deckcapture-console .th-status-strip > span + span { padding-left: 12px; border-left: 1px solid var(--th-line); }
+#deckcapture-console .th-window { border-radius: 2px; padding: 12px; }
+#deckcapture-console .th-queue-row { padding: 12px; }
+#deckcapture-console .th-queue-actions .th-btn { padding: 5px 8px; font-size: 12px; }
+#deckcapture-console .th-reports { gap: 0; border-top: 1px solid var(--th-line); }
+#deckcapture-console .th-report { background: transparent; border-radius: 0; border: 0; border-bottom: 1px solid var(--th-line); padding: 12px 0; }
+#deckcapture-console .th-modal { border-radius: 2px; border-color: var(--th-line); padding: 14px; }
+#deckcapture-console .th-modal pre, #deckcapture-console .th-folder { border-radius: 2px; }
+@media (max-width: 850px) {
+  #deckcapture-console .th-input-heading, #deckcapture-console .th-input-row { grid-template-columns: 30px 125px 85px 78px minmax(0,1fr) 74px; gap: 7px; }
+  #deckcapture-console .th-capture-grid { grid-template-columns: minmax(0,1fr) minmax(270px,.95fr); }
+  #deckcapture-console .th-main { padding: 12px; }
+}
+@media (max-width: 650px) {
+  #deckcapture-console .th-app { min-height: 1570px; }
+  #deckcapture-console .th-head { padding: 9px 12px; padding-right: 95px; }
+  #deckcapture-console .th-brand { flex-wrap: wrap; gap: 3px 8px; }
+  #deckcapture-console .th-brand-sub { border-left: 0; padding-left: 0; width: 100%; font-size: 11px; }
+  #deckcapture-console .th-sidebar { padding: 0 4px; }
+  #deckcapture-console .th-nav { font-size: 12px; padding: 6px 8px; }
+  #deckcapture-console .th-capture-grid { grid-template-columns: minmax(0,1fr); }
+  #deckcapture-console .th-input-heading { display: none; }
+  #deckcapture-console .th-input-row { grid-template-columns: 28px minmax(0,1fr) 82px; gap: 4px 7px; }
+  #deckcapture-console .th-input-row > span:nth-child(1) { grid-column: 1; grid-row: 1 / 3; }
+  #deckcapture-console .th-input-row > span:nth-child(2) { grid-column: 2; grid-row: 1; }
+  #deckcapture-console .th-input-row > span:nth-child(3) { grid-column: 2; grid-row: 2; }
+  #deckcapture-console .th-input-row > span:nth-child(4) { grid-column: 3; grid-row: 1; text-align: right; }
+  #deckcapture-console .th-input-row > span:nth-child(5) { grid-column: 2; grid-row: 3; }
+  #deckcapture-console .th-input-row > span:nth-child(6) { grid-column: 3; grid-row: 2; }
+  #deckcapture-console .th-monitor-block > .th-feed { height: 200px; }
+  #deckcapture-console .th-status-strip > span + span { border: 0; padding-left: 0; }
+  #deckcapture-console .th-head-right { display: none; }
+}
+@media (pointer: coarse) {
+  #deckcapture-console .th-btn, #deckcapture-console .th-nav,
+  #deckcapture-console .th-tab, #deckcapture-console .th-preset { min-height: 44px; }
+}
+
+</style>
+<script>
+(() => {
+  const root = document.getElementById('deckcapture-console');
+  if (!root) return;
+  const MiB = 1048576, GiB = MiB * 1024;
+  const instances = [];
+  const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const icon = name => `<i data-lucide="${name}" aria-hidden="true"></i>`;
+  const timer = sec => { sec = Math.max(0, Math.round(Number(sec) || 0)); return [Math.floor(sec/3600), Math.floor(sec/60)%60, sec%60].map(v=>String(v).padStart(2,'0')).join(':'); };
+  const shortBytes = bytes => bytes >= 1e12 ? `${(bytes/1e12).toFixed(1)} TB` : `${(bytes/1e9).toFixed(1)} GB`;
+  const pct = value => Math.max(0, Math.min(100, Number(value)||0));
+  const tag = (text,tone='') => `<span class="th-tag" data-tone="${tone}"><span class="th-dot"></span>${escape(text)}</span>`;
+  const button = (text,action,cls='',extra='') => `<button type="button" class="th-btn cursor-interaction ${cls}" data-action="${action}" ${extra}>${text}</button>`;
+  const input = (label,field,value,type='text',extra='') => `<label class="th-field"><span>${label}</span><input type="${type}" data-field="${field}" value="${escape(value)}" ${extra}></label>`;
+  const select = (label,field,value,options) => `<label class="th-field"><span>${label}</span><select data-field="${field}">${options.map(o=>{const v=typeof o==='string'?o:o[0], t=typeof o==='string'?o:o[1];return `<option value="${escape(v)}" ${String(value)===String(v)?'selected':''}>${escape(t)}</option>`;}).join('')}</select></label>`;
+  const check = (label,field,yes) => `<label class="th-check"><input type="checkbox" data-field="${field}" ${yes?'checked':''}><span>${label}</span></label>`;
+  const progress = (value,label) => `<progress class="th-progress" max="100" value="${pct(value)}" aria-label="${escape(label)}"></progress>`;
+  const metadataFields = [
+    ['station','Source station','Optional station or source label.'],
+    ['operator','Operator','Optional display name attached to this recording.'],
+    ['tapeId','Tape ID','Optional source reference; independent of the file name.'],
+    ['barcode','Barcode','Optional keyboard-scanner entry.'],
+    ['batch','Batch label','Optional label for a recording or report group.'],
+    ['collection','Collection','Descriptive text passed with the recording.'],
+    ['title','Title','Optional program or recording title.'],
+    ['description','Description','Optional content summary.'],
+    ['notes','Notes','Optional operator notes.']
+  ];
+  const metadataDefaults = () => Object.fromEntries(metadataFields.map(([key])=>[key,['station','operator'].includes(key)]));
+  const defaults = () => ({
+    version: 3, view: 'channels', selected: 1, scope: 'waveform', settingsTab: 'fields', elapsed: 0, windowOpen: false,
+    overrideUntil: null, step: 120, toast: '', error: false, modal: null,
+    settings: {start:'22:00',end:'06:00',concurrency:2,rate:20,outRate:2,aggregate:40,experimentalEndDetection:false,metadataVisibility:metadataDefaults(),endMode:'alert',blackSeconds:120,minRecord:300,grace:30,preRoll:5,waitMax:900,host:'relay.station.local',port:25,from:'deckcapture@example.com',recipients:'archive-ops@example.com',tls:'starttls',batchReport:true,windowReport:true,dailyReport:false,dailyTime:'06:15',durations:'15, 30, 60, 90, 120'},
+    channels: [
+      {id:1,deck:'Digital Betacam',port:'1',signal:'program',format:'525i / 59.94',changedAt:0,draft:{name:'KGAN_1998_0412_1800',station:'KGAN',operator:'Alex Morgan',duration:60,destination:'KGAN',folder:'1998/April',endMode:'alert',profile:'FFV1 / MKV'},job:{state:'recording',name:'KGAN_1998_0412_1800',station:'KGAN',operator:'Alex Morgan',duration:3600,recorded:1092,preRoll:0,destination:'KGAN',folder:'1998/April',endMode:'alert',blackSeconds:120,minRecord:300,grace:30,blackRun:0,warning:false,graceLeft:null,profile:'FFV1 / MKV',waited:0}},
+      {id:2,deck:'DVCAM',port:'2',signal:'black',format:'525i / 59.94',changedAt:0,draft:{name:'KGAN_2001_0622_2200',station:'KGAN',operator:'Alex Morgan',duration:60,destination:'KGAN',folder:'2001/June',endMode:'alert',profile:'FFV1 / MKV'},job:null},
+      {id:3,deck:'Betacam SP + SDI',port:'3',signal:'black',format:'525i / 59.94',changedAt:0,draft:{name:'KFXA_1996_1108_2100',station:'KFXA',operator:'Sam Lee',duration:90,destination:'KFXA',folder:'1996/November',endMode:'alert',profile:'FFV1 / MKV'},job:{state:'waiting',name:'KFXA_1996_1108_2100',station:'KFXA',operator:'Sam Lee',duration:5400,recorded:0,preRoll:5,destination:'KFXA',folder:'1996/November',endMode:'alert',blackSeconds:120,minRecord:300,grace:30,blackRun:0,warning:false,graceLeft:null,profile:'FFV1 / MKV',waited:0}},
+      {id:4,deck:'HDCAM',port:'4',signal:'nosignal',format:'Awaiting SDI',changedAt:0,draft:{name:'STATION_TAPE_004',station:'Mixed',operator:'Alex Morgan',duration:60,destination:'Mixed',folder:'Undated',endMode:'alert',profile:'FFV1 / MKV'},job:null}
+    ],
+    queue: [
+      {id:'q1',name:'KGAN_1997_0904_1800.mkv',station:'KGAN',size:48*GiB,copied:18.2*GiB,verified:0,state:'copying',override:false,hold:false,rate:2,folder:'1997/September'},
+      {id:'q2',name:'KFXA_2003_0214_2100.mkv',station:'KFXA',size:32.6*GiB,copied:0,verified:0,state:'queued',override:false,hold:false,rate:0,folder:'2003/February'},
+      {id:'q3',name:'KGAN_1992_0718_SPECIAL.mkv',station:'KGAN',size:39.8*GiB,copied:0,verified:0,state:'held',override:false,hold:true,rate:0,folder:'1992/July',review:true},
+      {id:'q4',name:'KFXA_2001_1224_2100.mkv',station:'KFXA',size:44.2*GiB,copied:44.2*GiB,verified:44.2*GiB,state:'delivered',override:false,hold:false,rate:0,folder:'2001/December'}
+    ],
+    reports: [{id:'r1',title:'Previous transfer window',type:'Window summary',detail:'1 package verified and delivered · 2 awaiting delivery',status:'Preview available'},{id:'r2',title:'Capture batch · Evening news',type:'Capture summary',detail:'4 recordings · 3 clear · 1 needs review',status:'Preview available'}]
+  });
+  function validSaved(s) {
+    return s && s.version===3 && Array.isArray(s.channels) && s.channels.length===4 && Array.isArray(s.queue) && s.queue.length<50 && s.channels.every(c=>c.draft && ['program','black','nosignal'].includes(c.signal)) && s.settings && typeof s.settings.experimentalEndDetection==='boolean' && s.settings.metadataVisibility && metadataFields.every(([key])=>typeof s.settings.metadataVisibility[key]==='boolean') && s.settings.concurrency>=1 && s.settings.concurrency<=4 && s.settings.rate>0 && s.settings.rate<=200 && s.settings.outRate>0 && s.settings.outRate<=200 && s.settings.aggregate>0 && s.settings.aggregate<=800 && Number.isFinite(s.elapsed);
+  }
+  let saved = window.openai?.widgetState?.privateContent?.deckcaptureConsole;
+  let lastOutgoingState = '';
+  let lastOutgoingToken = '';
+  const snapshot = s => { const v=JSON.parse(JSON.stringify(s)); v.modal=null; v.toast=''; return v; };
+  function persist(active) {
+    if (!window.openai?.setWidgetState) return;
+    const apps = {};
+    instances.forEach(i=>{apps[i.id]=snapshot(i.state);});
+    lastOutgoingState = JSON.stringify(apps);
+    lastOutgoingToken = Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9);
+    const s=active.state, ch=s.channels[s.selected];
+    window.openai.setWidgetState({modelContent:{preview:'DeckCapture console study',layout:active.id,view:s.view,experimentalEndDetection:s.settings.experimentalEndDetection,visibleMetadata:metadataFields.filter(([key])=>s.settings.metadataVisibility[key]).map(([key])=>key),selectedChannel:ch?.id,recordingState:ch?.job?.state||'draft',durationMinutes:ch?.draft?.duration,transferPolicy:{windowOpen:s.windowOpen,concurrency:s.settings.concurrency,perTransferMiBps:s.settings.rate,outsideMiBps:s.settings.outRate,globalOverrideActive:s.overrideUntil>s.elapsed}},privateContent:{deckcaptureConsole:apps,deckcaptureConsoleEditToken:lastOutgoingToken}}).catch(()=>{});
+  }
+  function createApp(id,layout) {
+    const el=document.getElementById(id);
+    let state=validSaved(saved?.[layout])?saved[layout]:defaults();
+    if(!validSaved(saved?.[layout])) {
+      state.selected=1;
+      const c=state.channels[1],d=c.draft;
+      d.duration=90;
+      c.job={...d,state:'prepared',duration:5400,recorded:0,waited:0,waitMax:state.settings.waitMax,preRoll:0,experimentalEndDetection:false,fieldVisibility:{...state.settings.metadataVisibility},endMode:'off',blackSeconds:120,minRecord:300,grace:30,blackRun:0,warning:false,graceLeft:null};
+    }
+    const app={id:layout,state,render}; instances.push(app);
+    const design={spacing:12,previewHeight:145};
+    const selected = ()=>state.channels[state.selected]||state.channels[0];
+    const notify=(text,error=false)=>{state.toast=text;state.error=error;};
+    const activeOverride = ()=>state.overrideUntil!==null && state.overrideUntil>state.elapsed;
+    const allowed = q=>state.windowOpen || activeOverride() || q.override;
+    const effectiveCap = q=>(state.windowOpen||activeOverride()||q.override)?state.settings.rate:state.settings.outRate;
+    const status = c=>c.job?.state==='recording'?['Recording','recording']:c.job?.state==='waiting'?['Waiting','waiting']:c.job?.state==='prepared'?['Prepared','ready']:c.job?.state==='complete'?['Saved locally','ready']:c.signal==='nosignal'?['No signal','']:['Ready','ready'];
+    const path = (station,folder)=>`\\\\archive-server\\VideoArchive\\${station}${folder?'\\'+folder.replace(/\//g,'\\'):''}`;
+    const nav = [ ['channels','Capture','layers-3'], ['queue','Transfers','hard-drive'], ['qc','Recording QC','activity'], ['reports','Reports','mail'], ['settings','Settings','settings-2'] ];
+    function scheduleQueue() {
+      let slots=state.settings.concurrency-state.queue.filter(q=>['copying','verifying'].includes(q.state)).length;
+      const candidates=state.queue.filter(q=>q.state==='queued'&&!q.hold&&allowed(q)).sort((a,b)=>Number(b.override)-Number(a.override));
+      for(const q of candidates) if(slots>0) {q.state=q.copied>=q.size?'verifying':'copying'; slots--;}
+      const running=state.queue.filter(q=>['copying','verifying'].includes(q.state));
+      for(const q of state.queue) q.rate=0;
+      let pool=state.settings.aggregate;
+      let pending=running.slice();
+      while(pending.length && pool>0) {
+        const share=pool/pending.length;
+        const capped=pending.filter(q=>effectiveCap(q)<=share);
+        if(!capped.length) {pending.forEach(q=>q.rate=share);break;}
+        capped.forEach(q=>{q.rate=effectiveCap(q);pool-=q.rate;});
+        pending=pending.filter(q=>!capped.includes(q));
+      }
+    }
+    function finish(c,reason) {
+      const j=c.job;if(!j||j.state!=='recording')return;
+      j.state='complete';j.reason=reason;j.completedAt=state.elapsed;
+      const file=j.name+(j.profile==='Uncompressed / MOV'?'.mov':'.mkv');
+      const size=Math.max(.2, j.recorded/3600*42)*GiB;
+      state.queue.unshift({id:`q-${c.id}-${state.elapsed}-${state.queue.length}`,name:file,station:j.destination,size,copied:0,verified:0,state:j.warning?'held':'queued',override:false,hold:!!j.warning,review:!!j.warning,rate:0,folder:j.folder});
+      if(state.settings.batchReport && !state.channels.some(x=>['recording','waiting'].includes(x.job?.state))) state.reports.unshift({id:`r-${state.elapsed}`,title:'Active recording group complete',type:'Capture summary',detail:'All recordings in this group have finished or timed out.',status:'Preview available'});
+    }
+    function advance(seconds) {
+      for(let t=0;t<seconds;t++) {
+        state.elapsed++;
+        if(state.overrideUntil!==null && state.elapsed>=state.overrideUntil) {state.overrideUntil=null;notify('The 12-hour override expired. Existing deliveries continue at the outside-window rate.');}
+        for(const c of state.channels) {
+          const j=c.job;if(!j)continue;
+          if(j.state==='waiting') {
+            j.waited++;
+            if(c.signal==='program' && !c.requireTransition && state.elapsed-c.changedAt>=2) {j.state='recording';j.recorded=0;j.startedAt=state.elapsed;j.reason=null;notify(`Channel ${c.id} started on content, with ${j.preRoll} seconds of pre-roll.`);}
+            else if(j.waited>=(j.waitMax||900)) {j.state='prepared';notify(`Channel ${c.id}: waiting timed out. The job is prepared for manual start.`);}
+          } else if(j.state==='recording') {
+            j.recorded++;
+            if(state.settings.experimentalEndDetection && j.experimentalEndDetection===true && c.signal==='black' && j.recorded>=j.minRecord) j.blackRun++; else {j.blackRun=0;j.graceLeft=null;}
+            if(state.settings.experimentalEndDetection && j.experimentalEndDetection===true && j.endMode!=='off' && j.blackRun>=j.blackSeconds) {
+              if(!j.endingWarning) notify(`Channel ${c.id}: suspected tape ending — extended black and silence.`,false);
+              j.warning=true;j.endingWarning=true;
+              if(j.endMode==='stop') {
+                if(j.graceLeft===null)j.graceLeft=j.grace;
+                else j.graceLeft--;
+                if(j.graceLeft<=0)finish(c,'Suspected tape ending');
+              }
+            }
+            if(j.state==='recording' && j.recorded>=j.duration)finish(c,'Duration reached');
+          }
+        }
+        scheduleQueue();
+        for(const q of state.queue) {
+          if(q.state==='copying') {q.copied=Math.min(q.size,q.copied+q.rate*MiB);if(q.copied>=q.size)q.state='verifying';}
+          else if(q.state==='verifying') {q.verified=Math.min(q.size,q.verified+q.rate*MiB);if(q.verified>=q.size){q.state='delivered';q.rate=0;q.override=false;}}
+        }
+      }
+      scheduleQueue();render();persist(app);
+    }
+    function feed(c,large=false) {
+      const signal=c.signal;
+      const name=signal==='program'?'simulated test pattern':signal==='black'?'black picture':'no signal';
+      return `<div class="th-feed" data-signal="${signal}" role="img" aria-label="${name} on SDI input ${c.id}">
+        ${signal==='program'?'<div class="th-colorbars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>':''}
+        <span class="th-feed-kicker">SDI ${String(c.id).padStart(2,'0')}</span>
+        ${signal!=='program'?`<div class="th-feed-center"><span class="th-feed-title">${signal==='black'?'BLACK':'NO SIGNAL'}</span></div>`:''}
+        <div class="th-feed-bottom"><span>${signal==='nosignal'?'Input not locked':escape(c.format||'525i / 59.94')}</span><span>${signal==='program'?'SIMULATED SOURCE':signal==='black'?'VALID SDI · SILENCE':'CHECK INPUT'}</span></div>
+      </div>`;
+    }
+    function channelCard(c,i) {
+      const [label,tone]=status(c),j=c.job;
+      const remaining=j?.state==='recording'?timer(j.duration-j.recorded):j?.state==='waiting'?'Waiting':j?.state==='prepared'?timer(j.duration):'—';
+      return `<button type="button" class="th-channel cursor-interaction" data-action="select-channel" data-channel="${i}" aria-pressed="${state.selected===i}" aria-label="Channel ${c.id}, ${escape(c.deck)}, ${label}">
+        <div class="th-channel-top"><div class="th-channel-title"><strong>${String(c.id).padStart(2,'0')} · ${escape(c.deck)}</strong>${tag(label,tone)}</div></div>
+        ${feed(c)}
+        <div class="th-channel-bottom"><div class="th-mini-time"><span>${escape(j?.name||c.format)}</span><strong class="th-num">${remaining}</strong></div></div>
+      </button>`;
+    }
+    function scopePanel() {
+      const scopeSignal = state.view === 'qc' ? 'program' : selected().signal;
+      return `<div class="th-scope"><div class="th-scope-head"><span class="th-label">${state.view==='qc'?'Review scopes':'Live scopes'}</span><div class="th-tabs" aria-label="Scope view">${[['waveform','Waveform'],['vectorscope','Vectorscope'],['audio','Audio']].map(([v,t])=>`<button type="button" class="th-tab cursor-interaction" aria-pressed="${state.scope===v}" data-action="scope" data-scope="${v}">${t}</button>`).join('')}</div></div><canvas data-scope-canvas role="img" aria-label="Illustrative ${state.scope} for the selected simulated input"></canvas><div class="th-small" style="margin-top:6px">${scopeSignal==='nosignal'?'No valid input':scopeSignal==='black'?'Black picture · audio below −50 dBFS':'Illustrative source scopes · 48 kHz embedded audio'}</div></div>`;
+    }
+    function captureEditor() {
+      const c=selected(),j=c.job,d=c.draft;
+      const fieldHeader=`<div class="th-panel-head"><div class="th-row th-between"><h2>${j?'Recording job':'Prepare a recording'}</h2><span class="th-tag">CH ${String(c.id).padStart(2,'0')}</span></div><span class="th-small">${escape(c.deck)} · ${escape(c.format)}</span></div>`;
+      if(j) {
+        const recording=j.state==='recording', waiting=j.state==='waiting', prepared=j.state==='prepared',complete=j.state==='complete';
+        return `<section class="th-panel">${fieldHeader}<div class="th-panel-body"><div class="th-row th-between"><span class="th-label">${recording?'Recording to local cache':waiting?'Armed for content':prepared?'Ready when you are':'Capture saved locally'}</span>${tag(status(c)[0],status(c)[1])}</div><strong style="overflow-wrap:anywhere">${escape(j.name)}</strong><div><div class="th-timer th-num ${recording?'th-recording-time':''}">${recording?timer(j.duration-j.recorded):waiting?timer(j.waited):complete?timer(j.recorded):timer(j.duration)}</div><div class="th-small th-center">${recording?'remaining':waiting?'waiting for a new content transition':complete?'recorded duration':`${Math.round(j.duration/60)} minute recording`}</div></div>${recording?progress(j.recorded/j.duration*100,'Recording duration'):''}${j.endingWarning?`<div class="th-note" data-tone="warning">${icon('triangle-alert')}<span>Suspected tape ending${j.graceLeft!==null?` · stopping in ${j.graceLeft}s`:' · review extended black and silence'}. ${j.endMode==='alert'?'Recording continues to the timer.':''}</span></div>`:''}${c.signal==='nosignal'?`<div class="th-note" data-tone="warning">${icon('unplug')}<span>Input signal lost. Capture status is flagged for review.</span></div>`:''}${prepared?button(`${icon('play')} START RECORDING`,'start','th-primary th-big-start'):''}${waiting?`<div class="th-note">${icon('radar')}<span>Starts after 2 seconds of valid program content. Includes ${j.preRoll}s of pre-roll.</span></div>${button(`${icon('play')} Start now`,'start','th-primary')}${button('Cancel waiting','cancel-wait','th-quiet')}`:''}${recording?`<div class="th-fields-two">${button(`${icon('square')} Stop and save`,'stop','th-danger')}${button('+ 5 minutes','add-time')}</div>`:''}${complete?`<div class="th-note" data-tone="success">${icon('file-check-2')}<span>${escape(j.reason)} · package ${j.warning?'held for review':'queued for delivery'}.</span></div>${button(`${icon('plus')} Prepare next tape`,'next-tape','th-primary')}`:''}<div class="th-divider"></div><div class="th-job-meta">${jobMetadataSummary(j)}<div class="th-meta-row"><span class="th-muted">Profile</span><span>${escape(j.profile)}</span></div><div class="th-meta-row"><span class="th-muted">End detection</span><span>${!j.experimentalEndDetection?'Off (experimental)':j.endMode==='stop'?'Automatic stop':j.endMode==='off'?'Disabled for this job':'Alert only (experimental)'}</span></div><div class="th-meta-row"><span class="th-muted">Local cache</span><span>D:\\DeckCapture</span></div></div><div class="th-field"><span>Deliver to</span><span class="th-path">${escape(path(j.destination,j.folder))}</span></div>${prepared?button('Edit job details','edit-job','th-quiet'):''}</div></section>`;
+      }
+      return `<section class="th-panel">${fieldHeader}<form data-recording-form class="th-panel-body">${input('File name','draft.name',d.name,'text','required maxlength="100" autocomplete="off"')}${captureMetadataForm(d)}<div class="th-field"><span>Record duration</span><div class="th-presets">${state.settings.durations.split(',').map(x=>Number(x.trim())).filter(x=>x>0&&x<=720).map(m=>`<button type="button" class="th-preset cursor-interaction" data-action="preset" data-minutes="${m}" aria-pressed="${Number(d.duration)===m}">${m} min</button>`).join('')}</div><label class="th-small">Custom minutes <input style="width:72px;margin-left:5px;padding:5px;border:1px solid var(--th-line);border-radius:5px;color:var(--th-text);background:var(--th-panel)" aria-label="Custom recording duration in minutes" data-field="draft.duration" type="number" min="1" max="720" value="${escape(d.duration)}"></label></div><div class="th-divider"></div>${select('Delivery destination','draft.destination',d.destination,[['KGAN','Station archive / KGAN'],['KFXA','Station archive / KFXA'],['Mixed','Station archive / Mixed stations']])}<div class="th-field"><div class="th-row th-between"><span>Archive folder</span>${button(`${icon('folder-open')} Browse`,'browse','th-quiet')}</div><span class="th-path">${escape(path(d.destination,d.folder))}</span></div>${select('Capture profile','draft.profile',d.profile,['FFV1 / MKV','Uncompressed / MOV'])}${endDetectionControl(d)}<div class="th-save-actions">${button(`${icon('check')} Save and prepare`,'prepare','th-primary')}${button(`${icon('radar')} Save and wait for content`,'arm')}</div><div class="th-small">Records to local storage first. Network delivery follows the transfer schedule.</div></form></section>`;
+    }
+    function demoControls() {
+      const c=selected();
+      return `<div class="th-demo" aria-label="Preview simulation controls"><div class="th-row"><span class="th-demo-label">Simulation controls</span><label class="th-row th-small">CH ${String(c.id).padStart(2,'0')} input <select aria-label="Simulated input" data-field="signal"><option value="program" ${c.signal==='program'?'selected':''}>Program content</option><option value="black" ${c.signal==='black'?'selected':''}>Black + silence</option><option value="nosignal" ${c.signal==='nosignal'?'selected':''}>No signal</option></select></label></div><div class="th-row"><select aria-label="Simulation time step" data-field="step">${[[2,'2 seconds'],[120,'2 minutes'],[600,'10 minutes'],[43200,'12 hours']].map(([v,t])=>`<option value="${v}" ${state.step===v?'selected':''}>${t}</option>`).join('')}</select>${button(`${icon('fast-forward')} Advance`,'advance')}</div></div>`;
+    }
+    function inputRows() {
+      return `<section class="th-input-table" aria-label="SDI input channels">
+        <div class="th-input-heading" aria-hidden="true"><span>Input</span><span>Deck</span><span>Signal</span><span>State</span><span>File</span><span style="text-align:right">Remaining</span></div>
+        ${state.channels.map((c,i)=>{
+          const [label,tone]=status(c),j=c.job;
+          const remain=j?.state==='recording'?timer(j.duration-j.recorded):j?.state==='prepared'?timer(j.duration):j?.state==='waiting'?'Waiting':'—';
+          return `<button type="button" class="th-input-row cursor-interaction" data-action="select-channel" data-channel="${i}" aria-pressed="${state.selected===i}" aria-label="Channel ${c.id}, ${escape(c.deck)}, ${label}">
+            <span class="th-num">${String(c.id).padStart(2,'0')}</span><span>${escape(c.deck)}</span><span class="th-small">${c.signal==='nosignal'?'No SDI':escape(c.format)}</span><span>${tag(label,tone)}</span><span class="th-input-filename">${escape(j?.name||'—')}</span><span class="th-input-remaining th-num">${remain}</span>
+          </button>`;
+        }).join('')}
+      </section>`;
+    }
+    function channelView() {
+      const c=selected();
+      const monitor=layout==='console'
+        ? `<section class="th-monitor-block" aria-label="Selected SDI input"><div class="th-monitor-heading"><strong>Input ${String(c.id).padStart(2,'0')} · ${escape(c.deck)}</strong><span class="th-small">SDI ${escape(c.port)}</span></div>${feed(c,true)}${scopePanel()}</section>`
+        : `<section class="th-monitor-block" aria-label="All SDI inputs"><div class="th-channel-grid">${state.channels.map((c,i)=>channelCard(c,i)).join('')}</div>${scopePanel()}</section>`;
+      return `<div class="th-console-title"><h1>${layout==='console'?'Inputs':'Input monitors'}</h1><span class="th-small">DeckLink Duo 2 / Card A · 4 SDI inputs</span></div>
+        ${layout==='console'?inputRows():''}
+        <div class="th-capture-grid">${monitor}${captureEditor()}</div>
+        ${demoControls()}`;
+    }
+    function queueView() {
+      scheduleQueue();
+      const running=state.queue.filter(q=>['copying','verifying'].includes(q.state)), pending=state.queue.filter(q=>q.state!=='delivered');
+      const rate=running.reduce((n,q)=>n+q.rate,0);
+      return `<div class="th-title-row"><div class="th-title-copy"><span class="th-label">Local cache → station archive</span><h1>Delivery queue</h1><p class="th-small">Transfer status and delivery schedule.</p></div>${button(`${icon('settings-2')} Transfer settings`,'queue-settings')}</div><div class="th-window"><div class="th-window-copy"><div class="th-row">${tag(state.windowOpen?'Window open':activeOverride()?'Override active':'Outside transfer window',state.windowOpen||activeOverride()?'ready':'waiting')}<strong class="th-num">${escape(state.settings.start)}–${escape(state.settings.end)}</strong></div><div class="th-small">Every day · America/Chicago · ${state.settings.concurrency} transfers · ${state.settings.rate} MiB/s each</div><div class="th-small">${activeOverride()?`Override ends in ${timer(state.overrideUntil-state.elapsed)}.`:`Existing transfers continue at ${state.settings.outRate} MiB/s each outside the window.`}</div></div>${button(activeOverride()?`${icon('clock-3')} End override now`:`${icon('clock-3')} Override for 12 hours`,'global-override',activeOverride()?'':'th-primary')}</div><div class="th-summary"><div class="th-summary-item"><span class="th-small">Active deliveries</span><span class="th-value th-num">${running.length} <span class="th-small">/ ${state.settings.concurrency}</span></span></div><div class="th-summary-item"><span class="th-small">Current payload rate</span><span class="th-value th-num">${rate.toFixed(1)} <span class="th-small">MiB/s</span></span></div><div class="th-summary-item"><span class="th-small">Still to copy</span><span class="th-value th-num">${shortBytes(pending.reduce((n,q)=>n+q.size-q.copied,0))}</span></div></div><section class="th-panel"><div class="th-panel-head"><div class="th-row th-between"><h2>Recording packages</h2><span class="th-small">Media + metadata + checksums</span></div></div><div class="th-queue-list">${state.queue.map(q=>{
+        const copying=q.state==='copying',verifying=q.state==='verifying',done=q.state==='delivered',held=q.state==='held';
+        const label=done?'Delivered':held?(q.review?'Needs review':'Held'):verifying?'Verifying':copying?'Copying':q.override?'Override queued':'Queued';
+        const caption=done?'Destination SHA-256 verified':held?(q.review?'QC review required before delivery':'Held by operator'):verifying?`${Math.round(q.verified/q.size*100)}% destination verification`:copying?`${shortBytes(q.copied)} of ${shortBytes(q.size)}`:allowed(q)?'Waiting for a transfer slot':'Waiting for transfer window';
+        return `<div class="th-queue-row"><div><div class="th-queue-name">${escape(q.name)}</div><div class="th-small">${escape(q.station)} · ${shortBytes(q.size)} · ${escape(q.folder)}</div><div style="margin-top:9px">${progress(done?100:verifying?q.verified/q.size*100:q.copied/q.size*100,`${q.name} ${verifying?'verification':'copy'} progress`)}</div><div class="th-queue-caption"><span class="th-small">${caption}</span>${q.override?'<span class="th-small">File override</span>':''}</div></div><div class="th-queue-status">${tag(label,done?'delivered':held?'review':q.state)}<span class="th-rate-label th-num">${copying||verifying?`${q.rate.toFixed(1)} MiB/s`:done?'Retained locally':'—'}</span></div><div class="th-queue-actions">${done?'<span class="th-small">Copy verified</span>':held&&q.review?button('Review QC','review-job','',`data-job="${escape(q.id)}"`):`${button(q.override?'Cancel override':'Transfer now','file-override',q.override?'':'th-primary',`data-job="${escape(q.id)}"`)}${button(held?'Resume':copying||verifying?'Pause':'Hold','hold-job','th-quiet',`data-job="${escape(q.id)}"`)}`}</div></div>`;
+      }).join('')}</div></section><div class="th-note">${icon('shield-check')}<span>A delivery is complete after destination verification. Local copies remain available for the retention period.</span></div><div class="th-demo"><div class="th-row"><span class="th-demo-label">Simulation controls</span><label class="th-row th-small">Transfer window <select aria-label="Simulated transfer window" data-field="windowOpen"><option value="closed" ${!state.windowOpen?'selected':''}>Closed</option><option value="open" ${state.windowOpen?'selected':''}>Open</option></select></label></div><div class="th-row"><select aria-label="Simulation time step" data-field="step">${[[120,'2 minutes'],[600,'10 minutes'],[43200,'12 hours']].map(([v,t])=>`<option value="${v}" ${state.step===v?'selected':''}>${t}</option>`).join('')}</select>${button(`${icon('fast-forward')} Advance`,'advance')}</div></div>`;
+    }
+    function qcView() {
+      const q=state.queue.find(q=>q.review)||state.queue.find(q=>q.id===state.reviewJob)||state.queue[0];
+      const reviewed=!q?.review;
+      return `<div class="th-title-row"><div class="th-title-copy"><span class="th-label">Recording quality control</span><h1>Review the recording</h1><p class="th-small">Picture, source metrics, and capture events in one place.</p></div>${tag(reviewed?'Reviewed':'Needs review',reviewed?'ready':'review')}</div><section class="th-panel"><div class="th-panel-head"><h2 style="overflow-wrap:anywhere">${escape(q?.name||'Reference recording')}</h2><span class="th-small">FFV1 · 10-bit 4:2:2 · 48 kHz PCM · preservation master</span></div><div class="th-qc-layout th-qc-preview"><div class="th-stack">${feed({id:1,signal:'program',draft:{station:q?.station||'KGAN'}},true)}<div class="th-row th-between"><span class="th-small th-num">00:42:18 / 01:00:00</span><span class="th-small">Illustrative review frame</span></div><div class="th-timeline"><canvas data-qc-timeline role="img" aria-label="Illustrative luma levels over a 60-minute recording, with black intervals near the end"></canvas><div class="th-row"><span class="th-tag">Luma average</span><span class="th-tag" data-tone="review">Black + silence</span></div></div>${scopePanel()}</div><div class="th-stack"><h3>Capture checks</h3><div class="th-job-meta"><div class="th-meta-row"><span>Container and streams</span><span style="color:var(--th-accent)">Passed</span></div><div class="th-meta-row"><span>Dropped frames reported</span><span class="th-num">0</span></div><div class="th-meta-row"><span>Local SHA-256</span><span style="color:var(--th-accent)">Recorded</span></div><div class="th-meta-row"><span>Source timecode</span><span>2 discontinuities</span></div></div><div class="th-divider"></div><h3>Review markers</h3><div class="th-events"><div class="th-event"><span class="th-small th-num">00:18:42</span><strong>Timecode discontinuity</strong><span class="th-small">Picture and audio capture continued.</span></div><div class="th-event"><span class="th-small th-num">00:42:18–00:44:34</span><strong>Extended black + silence</strong><span class="th-small">Check whether this is intentional content or blank tape.</span></div><div class="th-event"><span class="th-small th-num">00:59:12</span><strong>Vertical repetition indicator</strong><span class="th-small">Review the source picture. The metric alone is not a diagnosis.</span></div></div>${reviewed?'<div class="th-note" data-tone="success">Operator review complete. Delivery follows the queue policy.</div>':button(`${icon('check')} Mark reviewed and release`,'release-qc','th-primary',`data-job="${escape(q?.id)}"`)}${button(`${icon('file-chart-column')} QCTools report details`,'qc-details')}</div></div></section>`;
+    }
+    function reportView() {
+      return `<div class="th-title-row"><div class="th-title-copy"><span class="th-label">Alerts and reporting</span><h1>Reports</h1><p class="th-small">Capture summaries, delivery reports, and actionable alerts.</p></div>${button(`${icon('mail')} Email settings`,'email-settings')}</div><div class="th-note" data-tone="warning">${icon('mail')}<span>Email is in preview mode. These actions show messages without sending them.</span></div><section class="th-panel"><div class="th-panel-head"><h2>Report triggers</h2></div><div class="th-panel-body"><label class="th-setting-row"><div><strong>Recording group complete</strong><span class="th-small">Files, operators, durations, stop reasons, and QC warnings.</span></div><input aria-label="Recording group completion report" type="checkbox" data-field="settings.batchReport" ${state.settings.batchReport?'checked':''}></label><label class="th-setting-row"><div><strong>Transfer window closes</strong><span class="th-small">Finished, still running at reduced speed, failed, and left in queue.</span></div><input aria-label="Transfer window close report" type="checkbox" data-field="settings.windowReport" ${state.settings.windowReport?'checked':''}></label><label class="th-setting-row"><div><strong>Daily digest · ${escape(state.settings.dailyTime)}</strong><span class="th-small">Open alerts, storage, and remaining delivery backlog.</span></div><input aria-label="Daily digest" type="checkbox" data-field="settings.dailyReport" ${state.settings.dailyReport?'checked':''}></label></div></section><div class="th-row th-between"><h2>Report history</h2>${button('Preview current summary','preview-summary','th-primary')}</div><div class="th-reports">${state.reports.slice(0,5).map(r=>`<section class="th-panel th-report"><div class="th-stack" style="gap:5px"><span class="th-label">${escape(r.type)}</span><h3>${escape(r.title)}</h3><p class="th-small">${escape(r.detail)}</p></div>${button('Preview email','preview-summary')}</section>`).join('')}</div><div class="th-note">${icon('bell')}<span>Capture failures, unsafe disk space, signal loss, and verification failures can generate immediate alerts. Repeated alerts are grouped.</span></div>`;
+    }
+    function recordingFieldsPanel() {
+      return `<section class="th-panel"><div class="th-panel-head"><h2>Recording form fields</h2><span class="th-small">Choose the information your operators need. Descriptive fields are optional.</span></div><div class="th-panel-body"><div class="th-note">${icon('sliders-horizontal')}<span>File name, duration, channel, and destination remain available. Tape IDs are independent of file names.</span></div><div>${metadataFields.map(([key,label,help])=>`<label class="th-setting-row"><div><strong>${label}</strong><span class="th-small">${help}</span></div><span class="th-row"><span class="th-small">Show</span><input type="checkbox" aria-label="Show ${label}" data-visibility="${key}" ${state.settings.metadataVisibility[key]?'checked':''}></span></label>`).join('')}</div><span class="th-small">Hidden fields are omitted from new recording forms and metadata. Earlier jobs retain the values captured at the time.</span></div></section>`;
+    }
+    function settingsView() {
+      const s=state.settings;
+      let body='';
+      if(state.settingsTab==='delivery') body=`<div class="th-settings-grid"><section class="th-panel"><div class="th-panel-head"><h2>Transfer window</h2></div><div class="th-panel-body"><div class="th-fields-two">${input('Opens','settings.start',s.start,'time')}${input('Closes next day','settings.end',s.end,'time')}</div><div class="th-small">Every day · America/Chicago</div><div class="th-note">${icon('clock-3')}<span>New deliveries wait outside this window. Active deliveries continue at the lower speed.</span></div>${input('Concurrent package transfers','settings.concurrency',s.concurrency,'number','min="1" max="4"')}${input('Maximum rate per transfer · MiB/s','settings.rate',s.rate,'number','min="1" max="200"')}</div></section><section class="th-panel"><div class="th-panel-head"><h2>Network protection</h2></div><div class="th-panel-body">${input('Outside-window rate per transfer · MiB/s','settings.outRate',s.outRate,'number','min="0.1" max="200" step="0.1"')}${input('Aggregate ceiling · MiB/s','settings.aggregate',s.aggregate,'number','min="1" max="800"')}<div class="th-note" data-tone="success">${icon('shield-check')}<span>Schedule overrides keep the concurrency, verification, and aggregate limits in place.</span></div><div class="th-job-meta"><div class="th-meta-row"><span class="th-muted">Global override</span><span>12 elapsed hours</span></div><div class="th-meta-row"><span class="th-muted">File override</span><span>Until delivery completes</span></div><div class="th-meta-row"><span class="th-muted">Local retention</span><span>7 days after verification</span></div></div></div></section></div>`;
+      else if(state.settingsTab==='io') body=`<section class="th-panel"><div class="th-panel-head"><h2>DeckLink Duo 2 · Card A</h2><span class="th-small">Four SDI connections · assignments are illustrative</span></div><div class="th-panel-body">${state.channels.map((c,i)=>`<div class="th-fields-two">${input(`Channel ${c.id} · deck name`,`mapping.${i}.deck`,c.deck,'text',`${['recording','waiting','prepared'].includes(c.job?.state)?'readonly':''} maxlength="50"`)}<label class="th-field"><span>Physical input</span><select data-mapping-port="${i}" ${['recording','waiting','prepared'].includes(c.job?.state)?'disabled':''}>${['1','2','3','4'].map(v=>`<option value="${v}" ${c.port===v?'selected':''}>Card A / SDI ${v}</option>`).join('')}</select></label></div>`).join('')}<div class="th-note">${icon('lock-keyhole')}<span>Inputs reserved by recording or armed jobs are locked. Idle assignments can be changed together.</span></div></div></section>`;
+      else if(state.settingsTab==='detection') body=`<div class="th-settings-grid"><section class="th-panel"><div class="th-panel-head"><div class="th-row th-between"><h2>Tape-end detection</h2>${tag('Experimental','waiting')}</div></div><div class="th-panel-body">${check('Enable experimental end-of-tape detection','settings.experimentalEndDetection',s.experimentalEndDetection)}<div class="th-small">Off by default. Enabling applies to new jobs. Disabling cancels pending heuristic stops.</div><div class="th-stack" data-experimental-panel ${s.experimentalEndDetection?'':'hidden'}>${select('Default action','settings.endMode',s.endMode,[['alert','Alert only — recommended'],['stop','Stop after detection + grace period'],['off','Disabled']])}${input('Continuous black + silence · seconds','settings.blackSeconds',s.blackSeconds,'number','min="10" max="600"')}${input('Minimum recording time · seconds','settings.minRecord',s.minRecord,'number','min="0" max="3600"')}${input('Stop grace period · seconds','settings.grace',s.grace,'number','min="5" max="120"')}<div class="th-note" data-tone="warning">${icon('triangle-alert')}<span>Black picture does not prove the tape has ended. Calibrate each deck before enabling automatic stop.</span></div></div></div></section><section class="th-panel"><div class="th-panel-head"><h2>Content-triggered start</h2></div><div class="th-panel-body">${input('Pre-roll · seconds','settings.preRoll',s.preRoll,'number','min="0" max="15"')}${input('Maximum armed wait · seconds','settings.waitMax',s.waitMax,'number','min="60" max="3600"')}<div class="th-job-meta"><div class="th-meta-row"><span class="th-muted">Trigger confirmation</span><span>2 seconds of content</span></div><div class="th-meta-row"><span class="th-muted">Already playing</span><span>Wait for new transition</span></div><div class="th-meta-row"><span class="th-muted">Lost input</span><span>Alert, continue to timer</span></div></div><span class="th-small">Pre-roll is additional to the selected recording duration.</span></div></section></div>`;
+      else if(state.settingsTab==='email') body=`<div class="th-settings-grid"><section class="th-panel"><div class="th-panel-head"><h2>SMTP connection</h2>${tag('Preview mode','waiting')}</div><div class="th-panel-body">${input('SMTP server','settings.host',s.host)}<div class="th-fields-two">${input('Port','settings.port',s.port,'number','min="1" max="65535"')}${select('Transport','settings.tls',s.tls,[['starttls','STARTTLS'],['tls','TLS'],['relay','Station relay policy']])}</div>${input('Sender address','settings.from',s.from,'email')}${input('Alert recipients','settings.recipients',s.recipients)}<div class="th-small">Credentials are configured securely on the workstation and omitted from exports.</div>${button(`${icon('mail')} Preview test email`,'preview-test')}</div></section><section class="th-panel"><div class="th-panel-head"><h2>Summary delivery</h2></div><div class="th-panel-body">${check('When all recordings in a group finish','settings.batchReport',s.batchReport)}${check('When the transfer window closes','settings.windowReport',s.windowReport)}${check('Daily digest','settings.dailyReport',s.dailyReport)}${input('Daily digest time','settings.dailyTime',s.dailyTime,'time')}<div class="th-note">${icon('bell')}<span>Failed notifications remain in a retry queue. Recording and delivery continue independently.</span></div></div></section></div>`;
+      else if(state.settingsTab==='fields') body=recordingFieldsPanel();
+      else body=`<div class="th-settings-grid"><section class="th-panel"><div class="th-panel-head"><h2>Capture defaults</h2></div><div class="th-panel-body">${input('Duration presets · minutes, separated by commas','settings.durations',s.durations)}<div class="th-job-meta"><div class="th-meta-row"><span class="th-muted">Preservation profile</span><span>FFV1 / MKV · PCM audio</span></div><div class="th-meta-row"><span class="th-muted">State and logs</span><span>C:\\ProgramData\\DeckCapture</span></div><div class="th-meta-row"><span class="th-muted">Local media store</span><span>D:\\DeckCapture</span></div></div></div></section><section class="th-panel"><div class="th-panel-head"><h2>Workstation preferences</h2></div><div class="th-panel-body"><div class="th-job-meta"><div class="th-meta-row"><span class="th-muted">Workstation</span><span>ARCHIVE-01</span></div><div class="th-meta-row"><span class="th-muted">Time zone</span><span>America/Chicago</span></div><div class="th-meta-row"><span class="th-muted">Operator access</span><span>Administrator preview</span></div></div><div class="th-note">${icon('monitor')}<span>The workstation and remote browsers use the same interface and authoritative job states.</span></div></div></section></div>`;
+      return `<div class="th-title-row"><div class="th-title-copy"><span class="th-label">Workstation configuration</span><h1>Settings</h1><p class="th-small">New jobs use saved defaults. The experimental switch can cancel pending tape-end stops.</p></div><div class="th-row">${button(`${icon('download')} View export`,'export')}${button(`${icon('upload')} Import`,'import')}</div></div><div class="th-tabs" aria-label="Settings sections">${[['general','General'],['fields','Recording fields'],['io','I/O mapping'],['detection','Detection'],['delivery','Delivery'],['email','Email & reports']].map(([v,t])=>`<button type="button" class="th-tab cursor-interaction" aria-pressed="${state.settingsTab===v}" data-action="settings-tab" data-tab="${v}">${t}</button>`).join('')}</div><form data-settings-form class="th-stack">${body}<div class="th-row">${button(`${icon('check')} Save settings`,'save-settings','th-primary')}<span class="th-small">Preview settings stay within this conversation.</span></div></form>`;
+    }
+    function exportConfig() {
+      const s=state.settings;
+      return {schemaVersion:1,previewOnly:true,timeZone:'America/Chicago',durationPresetsMinutes:s.durations.split(',').map(x=>Number(x.trim())),experimentalFeatures:{endOfTapeDetection:{enabled:s.experimentalEndDetection}},metadataFields:Object.fromEntries(metadataFields.map(([key])=>[key,{visible:s.metadataVisibility[key],required:false}])),delivery:{startLocal:s.start,endLocal:s.end,maximumConcurrentTransfers:s.concurrency,perTransferMiBps:s.rate,outsideWindowPerTransferMiBps:s.outRate,aggregateMiBps:s.aggregate,globalOverrideElapsedHours:12},detection:{endMode:s.endMode,blackSeconds:s.blackSeconds,minimumRecordedSeconds:s.minRecord,graceSeconds:s.grace,preRollSeconds:s.preRoll},reports:{captureGroupComplete:s.batchReport,transferWindowClosed:s.windowReport,dailyDigest:s.dailyReport},secretsIncluded:false};
+    }
+    function modalView() {
+      if(!state.modal)return '';
+      const m=state.modal;
+      const header=t=>`<div class="th-row th-between"><h2>${t}</h2>${button(`${icon('x')} Close`,'close-modal','th-quiet')}</div>`;
+      if(m.type==='folder')return `<section class="th-modal" role="dialog" aria-label="Choose archive folder">${header('Choose archive folder')}<span class="th-small">Station archive / ${escape(selected().draft.destination)}</span><div class="th-stack" style="gap:7px">${['1998/April','2001/June','2003/February','Undated'].map(f=>`<button type="button" class="th-folder cursor-interaction" data-action="choose-folder" data-folder="${f}" aria-pressed="${m.folder===f}">${icon('folder')} ${f.replace('/',' / ')}</button>`).join('')}</div><div class="th-row">${button('Use this folder','use-folder','th-primary')}<span class="th-small">Final destination only; capture remains local.</span></div></section>`;
+      if(m.type==='export'||m.type==='import')return `<section class="th-modal" role="dialog" aria-label="${m.type==='export'?'Export':'Import'} preview settings">${header(m.type==='export'?'Settings export':'Import preview settings')}<div class="th-small">Versioned JSON · credentials and recording state excluded.</div><label class="th-field"><span>${m.type==='export'?'Select and copy settings':'Paste an exported configuration'}</span><textarea aria-label="Settings JSON" data-json ${m.type==='export'?'readonly':''} rows="14" spellcheck="false">${escape(m.text)}</textarea></label>${m.type==='import'?button('Validate and apply to preview','apply-import','th-primary'):''}</section>`;
+      if(m.type==='qc')return `<section class="th-modal" role="dialog" aria-label="QCTools report details">${header('QCTools report')}<div class="th-job-meta"><div class="th-meta-row"><span>Report file</span><span>recording.qctools.xml.gz</span></div><div class="th-meta-row"><span>Metrics</span><span>Luma, chroma, TOUT, VREP, audio</span></div><div class="th-meta-row"><span>Analysis</span><span>Offline, full recording</span></div></div><div class="th-note">${icon('file-chart-column')}<span>The production application will generate a report validated against the station's QCTools version.</span></div></section>`;
+      const delivered=state.queue.filter(q=>q.state==='delivered').length,stillRunning=state.queue.filter(q=>['copying','verifying'].includes(q.state)).length,left=state.queue.filter(q=>q.state!=='delivered').length;
+      return `<section class="th-modal" role="dialog" aria-label="Email preview">${header(m.type==='test'?'Test email preview':'Summary email preview')}<div class="th-small">To: ${escape(state.settings.recipients)} · preview only</div><h3>DeckCapture · ${m.type==='test'?'SMTP configuration test':'Archive workstation summary'}</h3><div class="th-divider"></div>${m.type==='test'?'<p>This is a preview of the workstation test message. No SMTP connection is made.</p>':`<div class="th-job-meta"><div class="th-meta-row"><span>Verified deliveries</span><strong>${delivered}</strong></div><div class="th-meta-row"><span>Still copying or verifying</span><strong>${stillRunning}</strong></div><div class="th-meta-row"><span>Remaining in queue</span><strong>${left}</strong></div><div class="th-meta-row"><span>Window status</span><strong>${state.windowOpen?'Open':'Closed'}</strong></div></div><div class="th-note">${icon('clock-3')}<span>${state.windowOpen?'Active transfers use the regular rate.':`Transfers already running continue at ${state.settings.outRate} MiB/s each unless overridden.`}</span></div><div class="th-stack" style="gap:6px">${state.queue.map(q=>`<div class="th-small" style="overflow-wrap:anywhere">${escape(q.name)} — ${escape(q.state)}</div>`).join('')}</div>`}</section>`;
+    }
+    function render() {
+      app.state=state;
+      const queueCount=state.queue.filter(q=>q.state!=='delivered').length;
+      const recordingCount=state.channels.filter(c=>c.job?.state==='recording').length;
+      const activeRate=state.queue.filter(q=>['copying','verifying'].includes(q.state)).reduce((sum,q)=>sum+(q.rate||0),0);
+      const view=state.view==='channels'?channelView():state.view==='queue'?queueView():state.view==='qc'?qcView():state.view==='reports'?reportView():settingsView();
+      el.innerHTML=`<header class="th-head"><div class="th-brand"><strong class="th-brand-name">DeckCapture</strong><span class="th-brand-sub">SDI capture</span></div><span class="th-head-right th-muted">ARCHIVE-01 · SIMULATION</span></header>
+        <div class="th-shell"><nav class="th-sidebar" aria-label="Main navigation">${nav.map(([v,t])=>`<button type="button" class="th-nav cursor-interaction" data-action="view" data-view="${v}" ${state.view===v?'aria-current="page"':''}><span>${t}</span>${v==='queue'?`<span class="th-count th-num">(${queueCount})</span>`:''}</button>`).join('')}</nav>
+        <main class="th-main">${state.toast?`<div class="th-toast" data-error="${state.error}" role="${state.error?'alert':'status'}"><span>${escape(state.toast)}</span></div>`:''}${view}${modalView()}<div aria-live="polite" class="th-small" data-announcement></div></main></div>
+        <footer class="th-foot"><div class="th-status-strip"><span>${recordingCount} recording</span><span>D: 4.6 TB free</span><span>Delivery ${queueCount} pending · ${activeRate.toFixed(1)} MiB/s</span><span>${activeOverride()?'Schedule override active':state.windowOpen?'Transfer window open':`Transfer window ${escape(state.settings.start)}–${escape(state.settings.end)}`}</span></div><span>Simulated inputs and actions</span></footer>`;
+      if(globalThis.lucide)lucide.createIcons({attrs:{width:15,height:15}});
+      requestAnimationFrame(drawCanvases);
+    }
+    function drawCanvases() {
+      const scopeSignal = state.view === 'qc' ? 'program' : selected().signal;
+      const css=getComputedStyle(el), ink=css.getPropertyValue('--th-text').trim(), muted=css.getPropertyValue('--th-muted').trim();
+      const color=name=>{const probe=document.createElement('span');probe.style.color=`var(${name})`;el.appendChild(probe);const c=getComputedStyle(probe).color;probe.remove();return c;};
+      const line=color('--th-line'), fg=color('--th-muted'), accent=color('--th-scope-trace'), warn=color('--th-warn');
+      el.querySelectorAll('canvas').forEach(canvas=>{
+        const width=Math.round(canvas.getBoundingClientRect().width);if(width<10)return;
+        const height=canvas.hasAttribute('data-qc-timeline')?145:135;
+        const ratio=Math.min(window.devicePixelRatio||1,2);canvas.width=width*ratio;canvas.height=height*ratio;
+        const ctx=canvas.getContext('2d');ctx.scale(ratio,ratio);ctx.font='11px Segoe UI, sans-serif';ctx.lineWidth=1;
+        const left=36,right=width-12,top=25,bottom=height-27;
+        ctx.fillStyle=fg;ctx.strokeStyle=line;
+        const timeline=canvas.hasAttribute('data-qc-timeline');
+        if(!timeline && state.scope==='vectorscope') {
+          const cx=width/2,cy=height/2,r=Math.min(width/2-32,height/2-22);
+          ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(cx-r-10,cy);ctx.lineTo(cx+r+10,cy);ctx.moveTo(cx,cy-r-5);ctx.lineTo(cx,cy+r+5);ctx.stroke();
+          ctx.fillText('U',cx+r+12,cy+3);ctx.fillText('V',cx-3,cy-r-7);
+          ctx.fillStyle=accent;
+          if(scopeSignal==='program')for(let k=0;k<180;k++){const a=k*.61;const rr=(.15+.19*(Math.sin(k*1.8)+1))*r;ctx.fillRect(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr,1.5,1.5);}
+          else {ctx.beginPath();ctx.arc(cx,cy,2,0,Math.PI*2);ctx.fill();}
+          return;
+        }
+        [0,50,100].forEach(v=>{const y=bottom-v/100*(bottom-top);ctx.strokeStyle=line;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();ctx.fillStyle=fg;ctx.textAlign='right';ctx.fillText(String(v),left-7,y+4);});
+        ctx.textAlign='left';ctx.fillStyle=fg;ctx.fillText(timeline?'Luma %':state.scope==='audio'?'Level %':'Luma %',4,10);
+        if(!timeline && state.scope==='audio') {
+          const w=(right-left)/8;
+          for(let n=0;n<8;n++){const value=scopeSignal==='program'?(n<2?68+10*Math.sin(state.elapsed+n):n<4?35:2):1;ctx.fillStyle=line;ctx.fillRect(left+n*w+3,top,w-9,bottom-top);ctx.fillStyle=accent;ctx.fillRect(left+n*w+3,bottom-value/100*(bottom-top),w-9,value/100*(bottom-top));ctx.fillStyle=fg;ctx.textAlign='center';ctx.fillText(String(n+1),left+n*w+w/2,height-10);}
+          ctx.textAlign='right';ctx.fillText('Track',right,height-1);return;
+        }
+        ctx.strokeStyle=accent;ctx.lineWidth=1.4;ctx.beginPath();
+        const n=Math.max(50,Math.floor(right-left));
+        for(let i=0;i<=n;i++) {const x=left+i/n*(right-left),ratioX=i/n;let value;
+          if(timeline)value=ratioX>.70&&ratioX<.76?2:42+12*Math.sin(i*.14)+8*Math.sin(i*.47);
+          else value=scopeSignal==='program'?45+23*Math.sin(i*.11)+13*Math.sin(i*.37)+4*Math.sin(i*2):scopeSignal==='black'?2:0;
+          const y=bottom-value/100*(bottom-top);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+        }ctx.stroke();ctx.fillStyle=fg;ctx.textAlign='left';ctx.fillText('0',left,height-10);ctx.textAlign='center';ctx.fillText(timeline?'30 min':'Picture samples',(left+right)/2,height-10);ctx.textAlign='right';ctx.fillText(timeline?'60 min':'100%',right,height-10);
+        if(timeline){ctx.fillStyle=warn;ctx.fillRect(left+(right-left)*.70,top,Math.max(5,(right-left)*.06),4);}
+      });
+    }
+    function validateSettings(s) {
+      if(!Number.isFinite(s.concurrency)||s.concurrency<1||s.concurrency>4||!Number.isInteger(s.concurrency))return 'Choose between 1 and 4 simultaneous transfers.';
+      if(![s.rate,s.outRate,s.aggregate].every(v=>Number.isFinite(v)&&v>0)||s.rate>200||s.outRate>200||s.aggregate>800)return 'Enter positive transfer speeds within the displayed limits. Outside-window speed must stay above zero.';
+      if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(s.start)||!/^([01]\d|2[0-3]):[0-5]\d$/.test(s.end)||s.start===s.end)return 'Choose a valid transfer window with different opening and closing times.';
+      if(!['off','alert','stop'].includes(s.endMode)||!Number.isFinite(s.blackSeconds)||s.blackSeconds<10||s.blackSeconds>600||!Number.isFinite(s.minRecord)||s.minRecord<0||s.minRecord>3600||!Number.isFinite(s.grace)||s.grace<5||s.grace>120||!Number.isFinite(s.preRoll)||s.preRoll<0||s.preRoll>15||!Number.isFinite(s.waitMax)||s.waitMax<60||s.waitMax>3600)return 'Enter detection and pre-roll values within the displayed limits.';
+      const ds=s.durations.split(',').map(x=>Number(x.trim()));if(!ds.length||ds.length>8||ds.some(x=>!Number.isFinite(x)||x<1||x>720))return 'Enter up to eight duration presets between 1 and 720 minutes.';
+      return null;
+    }
+    function readSettings() {
+      const next={...state.settings,metadataVisibility:{...state.settings.metadataVisibility}};
+      el.querySelectorAll('[data-field^="settings."]').forEach(f=>{const k=f.dataset.field.split('.')[1];next[k]=f.type==='checkbox'?f.checked:f.type==='number'?Number(f.value):f.value;});
+      el.querySelectorAll('[data-visibility]').forEach(f=>{next.metadataVisibility[f.dataset.visibility]=f.checked;});
+      return next;
+    }
+    function applyExperimentalDisable() {
+      if(state.settings.experimentalEndDetection)return;
+      state.channels.forEach(c=>{if(c.job){c.job.experimentalEndDetection=false;c.job.graceLeft=null;c.job.blackRun=0;}});
+    }
+    function captureMetadataForm(d) {
+      const enabled=metadataFields.filter(([key])=>state.settings.metadataVisibility[key]);
+      if(!enabled.length)return '';
+      return `<div class="th-fields-two">${enabled.map(([key,label])=>key==='station'?select(label,'draft.station',d.station,['KGAN','KFXA','Mixed']):input(label,'draft.'+key,d[key]||'','text','maxlength="160" autocomplete="off"')).join('')}</div>`;
+    }
+    function jobMetadataSummary(j) {
+      const visible=j.fieldVisibility||metadataDefaults();
+      return metadataFields.filter(([key])=>visible[key]&&j[key]).map(([key,label])=>`<div class="th-meta-row"><span class="th-muted">${label}</span><span>${escape(j[key])}</span></div>`).join('');
+    }
+    function endDetectionControl(d) {
+      return state.settings.experimentalEndDetection?select('Experimental end-of-tape behavior','draft.endMode',d.endMode,[['alert','Alert only — recommended'],['stop','Stop after black + silence'],['off','Off for this recording']]):'';
+    }
+    function prepare(wait) {
+      const c=selected(),d=c.draft;
+      if(c.signal==='nosignal') {notify('No valid SDI input. Restore the signal before preparing this channel.',true);render();return;}
+      if(!d.name.trim()||/[<>:"/\\|?*]/.test(d.name)||/[ .]$/.test(d.name)||/^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)/i.test(d.name)) {notify('Enter a file name without reserved Windows characters or device names.',true);render();return;}
+      if(!Number.isFinite(Number(d.duration))||d.duration<1||d.duration>720) {notify('Choose a duration between 1 and 720 minutes.',true);render();return;}
+      if(state.queue.some(q=>q.name===d.name+'.mkv'||q.name===d.name+'.mov')) {notify('This file name already exists in the delivery queue. Choose a unique name.',true);render();return;}
+      const s=state.settings;
+      const values={...d};
+      metadataFields.forEach(([key])=>{if(!s.metadataVisibility[key]||!String(values[key]||'').trim())delete values[key];});
+      c.job={...values,name:d.name.trim(),state:wait?'waiting':'prepared',duration:Number(d.duration)*60,recorded:0,waited:0,waitMax:s.waitMax,preRoll:wait?s.preRoll:0,experimentalEndDetection:s.experimentalEndDetection,fieldVisibility:{...s.metadataVisibility},endMode:s.experimentalEndDetection?d.endMode:'off',blackSeconds:s.blackSeconds,minRecord:s.minRecord,grace:s.grace,blackRun:0,warning:false,graceLeft:null};
+      c.changedAt=state.elapsed;
+      if(wait && c.signal==='program')c.requireTransition=true;
+      notify(wait?'Saved and armed. Change the simulated input to content, then advance 2 seconds.':'Job prepared. Press START RECORDING when the tape is ready.');
+      render();persist(app);
+    }
+    el.addEventListener('input',event=>{
+      const f=event.target.closest('[data-field]');if(!f)return;
+      const field=f.dataset.field;
+      if(field.startsWith('draft.'))selected().draft[field.split('.')[1]]=f.type==='number'?Number(f.value):f.value;
+    });
+    el.addEventListener('change',event=>{
+      const f=event.target.closest('[data-field]');if(!f)return;
+      const field=f.dataset.field;
+      if(field==='signal') {const c=selected();c.signal=f.value;c.changedAt=state.elapsed;if(c.signal==='nosignal'){c.format='Awaiting SDI';c.requireTransition=false;if(c.job?.state==='recording')c.job.warning=true;notify(`Channel ${c.id}: simulated input loss.`);}else {c.format='525i / 59.94';if(c.signal!=='program')c.requireTransition=false;notify(c.signal==='program'?'Program content is present. Advance time to confirm the trigger.':'Black picture and silent audio are present.');}render();persist(app);}
+      else if(field==='windowOpen') {const was=state.windowOpen;state.windowOpen=f.value==='open';if(was&&!state.windowOpen&&state.settings.windowReport)state.reports.unshift({id:`window-${state.elapsed}-${state.reports.length}`,title:'Transfer window closed',type:'Window summary',detail:`${state.queue.filter(q=>q.state==='delivered').length} delivered · ${state.queue.filter(q=>['copying','verifying'].includes(q.state)).length} still running · remaining jobs deferred`,status:'Preview available'});scheduleQueue();notify(state.windowOpen?'Transfer window opened. Eligible queued packages can start.':'Transfer window closed. Active deliveries continue at the outside-window rate.');render();persist(app);}
+      else if(field==='step') {state.step=Number(f.value);persist(app);}
+      else if(field==='settings.experimentalEndDetection'&&state.view==='settings'){const panel=el.querySelector('[data-experimental-panel]');if(panel)panel.hidden=!f.checked;}
+      else if(field.startsWith('draft.')) {if(field==='draft.duration') {el.querySelectorAll('[data-action="preset"]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.minutes)===selected().draft.duration)));}else if(field==='draft.destination'||field==='draft.profile'||field==='draft.endMode')render();persist(app);}
+      else if(field.startsWith('settings.')&&state.view==='reports'){state.settings[field.split('.')[1]]=f.checked;persist(app);}
+    });
+    el.addEventListener('submit',e=>{e.preventDefault();if(e.target.hasAttribute('data-recording-form'))prepare(false);});
+    el.addEventListener('click',event=>{
+      const b=event.target.closest('[data-action]');if(!b||b.disabled)return;
+      const a=b.dataset.action,c=selected(),j=c.job;
+      if(a==='view'){state.view=b.dataset.view;state.modal=null;state.toast='';}
+      else if(a==='select-channel'){state.selected=Number(b.dataset.channel);state.toast='';state.modal=null;}
+      else if(a==='scope')state.scope=b.dataset.scope;
+      else if(a==='preset'){c.draft.duration=Number(b.dataset.minutes);}
+      else if(a==='prepare'){prepare(false);return;}
+      else if(a==='arm'){prepare(true);return;}
+      else if(a==='start'){if(c.signal==='nosignal'){notify('Restore SDI input before starting.',true);}else if(j&&['prepared','waiting'].includes(j.state)){j.state='recording';j.waited=0;j.recorded=0;j.blackRun=0;c.requireTransition=false;notify(`Channel ${c.id} is recording to local cache.`);}}
+      else if(a==='stop'){finish(c,'Operator stopped');scheduleQueue();notify('Recording finalized locally. The delivery package follows its queue policy.');}
+      else if(a==='add-time'){if(j?.state==='recording'){j.duration+=300;notify('Added five minutes to this recording.');}}
+      else if(a==='cancel-wait'){if(j){j.state='prepared';j.preRoll=0;notify('Waiting canceled. The job is ready for manual start.');}}
+      else if(a==='edit-job'){if(j?.state==='prepared'){c.draft={...c.draft,name:j.name,operator:j.operator,duration:j.duration/60};c.job=null;}}
+      else if(a==='next-tape'){c.job=null;c.draft.name=c.draft.name+'_NEXT';notify('Ready to prepare the next tape.');}
+      else if(a==='advance'){advance(state.step);return;}
+      else if(a==='browse')state.modal={type:'folder',folder:c.draft.folder};
+      else if(a==='choose-folder'){state.modal.folder=b.dataset.folder;}
+      else if(a==='use-folder'){c.draft.folder=state.modal.folder;state.modal=null;notify('Archive folder selected. The recording will still be cached locally.');}
+      else if(a==='close-modal')state.modal=null;
+      else if(a==='global-override'){state.overrideUntil=activeOverride()?null:state.elapsed+43200;scheduleQueue();notify(activeOverride()?'Schedule overridden for 12 elapsed hours. Bandwidth and verification limits remain active.':'Override ended. Existing deliveries now follow the current window speed.');}
+      else if(a==='file-override'){const q=state.queue.find(x=>x.id===b.dataset.job);if(q&&!q.hold){q.override=!q.override;scheduleQueue();notify(q.override?'File override enabled for this package and its required sidecars.':'File override canceled. This delivery follows the current window speed.');}}
+      else if(a==='hold-job'){const q=state.queue.find(x=>x.id===b.dataset.job);if(q){if(q.state==='held'){q.hold=false;q.state='queued';}else {q.hold=true;q.state='held';q.rate=0;}scheduleQueue();notify(q.hold?'Delivery paused by operator. Partial progress is retained.':'Delivery released to the scheduling policy.');}}
+      else if(a==='review-job'){state.reviewJob=b.dataset.job;state.view='qc';state.toast='';}
+      else if(a==='release-qc'){const q=state.queue.find(x=>x.id===b.dataset.job);if(q){state.reviewJob=q.id;q.review=false;q.hold=false;q.state='queued';scheduleQueue();notify('Review recorded. The package is eligible for its delivery schedule.');}}
+      else if(a==='qc-details')state.modal={type:'qc'};
+      else if(a==='preview-summary')state.modal={type:'summary'};
+      else if(a==='preview-test')state.modal={type:'test'};
+      else if(a==='queue-settings'){state.view='settings';state.settingsTab='delivery';state.toast='';}
+      else if(a==='email-settings'){state.view='settings';state.settingsTab='email';state.toast='';}
+      else if(a==='settings-tab'){state.settingsTab=b.dataset.tab;state.toast='';state.modal=null;}
+      else if(a==='save-settings'){
+        const next=readSettings(),err=validateSettings(next);
+        const ports=Array.from(el.querySelectorAll('[data-mapping-port]')).map(f=>f.value);
+        if(err){notify(err,true);}else if(ports.length&&new Set(ports).size!==ports.length){notify('Each idle channel needs a unique physical SDI input. Change both assignments before saving.',true);}else {
+          state.settings=next;
+          applyExperimentalDisable();
+          el.querySelectorAll('[data-mapping-port]').forEach(f=>{state.channels[Number(f.dataset.mappingPort)].port=f.value;});
+          el.querySelectorAll('[data-field^="mapping."]').forEach(f=>{if(!f.readOnly)state.channels[Number(f.dataset.field.split('.')[1])].deck=f.value;});
+          state.channels.filter(x=>!x.job).forEach(x=>x.draft.endMode=next.endMode);
+          scheduleQueue();notify('Settings saved. Hidden fields are omitted from new jobs; disabling experimental end detection cancels pending stops.');
+        }
+      }
+      else if(a==='export')state.modal={type:'export',text:JSON.stringify(exportConfig(),null,2)};
+      else if(a==='import')state.modal={type:'import',text:JSON.stringify(exportConfig(),null,2)};
+      else if(a==='apply-import'){
+        try {
+          state.modal.text=el.querySelector('[data-json]').value;
+          const data=JSON.parse(state.modal.text);
+          if(data.schemaVersion!==1||data.previewOnly!==true)throw new Error('Use a version 1 DeckCapture preview export.');
+          const d=data.delivery,n={...state.settings,start:d.startLocal,end:d.endLocal,concurrency:d.maximumConcurrentTransfers,rate:d.perTransferMiBps,outRate:d.outsideWindowPerTransferMiBps,aggregate:d.aggregateMiBps,durations:data.durationPresetsMinutes.join(', '),metadataVisibility:{...state.settings.metadataVisibility},experimentalEndDetection:false};
+          const err=validateSettings(n);if(err)throw new Error(err);
+          if(data.detection){const det=data.detection;if(!['off','alert','stop'].includes(det.endMode)||![det.blackSeconds,det.minimumRecordedSeconds,det.graceSeconds,det.preRollSeconds].every(Number.isFinite)||det.blackSeconds<10||det.blackSeconds>600||det.minimumRecordedSeconds<0||det.minimumRecordedSeconds>3600||det.graceSeconds<5||det.graceSeconds>120||det.preRollSeconds<0||det.preRollSeconds>15)throw new Error('Detection settings are outside the supported preview limits.');Object.assign(n,{endMode:det.endMode,blackSeconds:det.blackSeconds,minRecord:det.minimumRecordedSeconds,grace:det.graceSeconds,preRoll:det.preRollSeconds});}
+          if(data.reports)Object.assign(n,{batchReport:!!data.reports.captureGroupComplete,windowReport:!!data.reports.transferWindowClosed,dailyReport:!!data.reports.dailyDigest});
+          if(data.experimentalFeatures){const enabled=data.experimentalFeatures.endOfTapeDetection?.enabled;if(typeof enabled!=='boolean')throw new Error('Experimental end detection must be enabled or disabled explicitly.');n.experimentalEndDetection=enabled;}
+          if(data.metadataFields){for(const [key] of metadataFields){const field=data.metadataFields[key];if(!field||typeof field.visible!=='boolean')throw new Error('Each metadata field needs a visible setting.');if(field.required===true)throw new Error('This preview supports optional descriptive fields only. Hidden fields cannot be required.');n.metadataVisibility[key]=field.visible;}}
+          state.settings=n;applyExperimentalDisable();state.modal=null;scheduleQueue();notify('Configuration applied. Field visibility is saved; disabling experimental end detection cancels pending heuristic stops.');
+        }catch(err){notify(`Import was not applied. ${err.message}`,true);}
+      }
+      render();persist(app);
+      if(state.modal)el.querySelector('.th-modal button, .th-modal textarea')?.focus();
+    });
+    el.addEventListener('keydown',e=>{if(e.key==='Escape'&&state.modal){state.modal=null;render();}});
+    function applyDesign(){el.style.setProperty('--th-gap',`${design.spacing}px`);el.style.setProperty('--th-preview-height',`${design.previewHeight}px`);requestAnimationFrame(drawCanvases);}
+    render();
+    if(globalThis.ResizeObserver)new ResizeObserver(()=>requestAnimationFrame(drawCanvases)).observe(el);
+    if(globalThis.Tweak){const tweak=new Tweak({container:el,onChange:applyDesign});tweak.addSlider(design,'spacing',{label:'Workspace spacing',min:12,max:24,step:2,unit:'px',reference:'--th-gap'});tweak.addSlider(design,'previewHeight',{label:'Channel preview height',min:100,max:180,step:5,unit:'px',reference:'--th-preview-height'});}
+    app.restore=v=>{if(validSaved(v)){state=v;state.modal=null;app.state=state;render();}};
+  }
+  createApp('th-console','console');
+  createApp('th-monitors','monitors');
+  window.addEventListener('openai:set_globals',e=>{const data=e.detail?.globals?.widgetState?.privateContent;const incoming=data?.deckcaptureConsole;if(!incoming||data.deckcaptureConsoleEditToken===lastOutgoingToken||JSON.stringify(incoming)===lastOutgoingState)return;instances.forEach(i=>i.restore(incoming[i.id]));});
+})();
+</script>
+
+<!-- DECKCAPTURE_PREVIEW_SOURCE_END -->

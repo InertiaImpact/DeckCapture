@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "status": "proposed-design-example",
+  "application": {
+    "timeZone": "America/Chicago",
+    "windowsTimeZone": "Central Standard Time",
+    "bindAddress": "127.0.0.1",
+    "authentication": "deployment-choice-required",
+    "scope": "capture-qc-verified-delivery",
+    "name": "DeckCapture"
+  },
+  "storage": {
+    "cacheRoot": "D:\\DeckCapture\\Capture",
+    "stateRoot": "C:\\ProgramData\\DeckCapture",
+    "automaticCleanupEnabled": false,
+    "retentionAfterVerifiedDeliveryDays": 7,
+    "reservationSafetyFactor": 1.25,
+    "emergencyReserveGiB": 100,
+    "approvedDestinations": [
+      {
+        "id": "station-archive",
+        "label": "Station archive",
+        "uncRoot": "\\\\archive-server\\VideoArchive",
+        "allowedRelativePathTemplate": "{captureDate}/{fileStem}"
+      }
+    ],
+    "role": "temporary-capture-cache"
+  },
+  "recording": {
+    "durationPresetsMinutes": [
+      15,
+      30,
+      60,
+      90,
+      120
+    ],
+    "requireDurationForUnattended": true,
+    "defaultCaptureProfileId": "preservation-ffv1",
+    "defaultDetectionProfileId": "conservative-alerts",
+    "preRollSeconds": 5,
+    "durationOrigin": "accepted-trigger",
+    "preRollAdditionalToDuration": true,
+    "profiles": [
+      {
+        "id": "preservation-ffv1",
+        "container": "matroska",
+        "videoCodec": "ffv1",
+        "ffv1Version": 3,
+        "sliceChecksums": true,
+        "preferredPixelFormat": "yuv422p10le",
+        "audioCodec": "pcm_s24le",
+        "audioSampleRate": 48000,
+        "preserveSourceRaster": true,
+        "preserveInterlaceAndFieldOrder": true,
+        "captureTimecodeWhenAvailable": true,
+        "captureAncillaryDataWhenValidated": true
+      }
+    ],
+    "metadataFields": {
+      "station": {
+        "visible": true,
+        "required": false
+      },
+      "operator": {
+        "visible": true,
+        "required": false
+      },
+      "tapeId": {
+        "visible": false,
+        "required": false
+      },
+      "barcode": {
+        "visible": false,
+        "required": false
+      },
+      "batch": {
+        "visible": false,
+        "required": false
+      },
+      "collection": {
+        "visible": false,
+        "required": false
+      },
+      "title": {
+        "visible": false,
+        "required": false
+      },
+      "description": {
+        "visible": false,
+        "required": false
+      },
+      "notes": {
+        "visible": false,
+        "required": false
+      }
+    },
+    "collectOnlyVisiblePopulatedMetadata": true,
+    "fileNameIndependentOfTapeId": true
+  },
+  "channels": [
+    {
+      "id": "channel-1",
+      "label": "Channel 1",
+      "hardware": {
+        "persistentDeviceId": "ASSIGN_AFTER_ENUMERATION",
+        "subdeviceId": "ASSIGN_AFTER_ENUMERATION",
+        "physicalConnector": "ASSIGN_AFTER_CABLE_TEST",
+        "input": "sdi"
+      },
+      "deckProfileId": "assign-tested-deck-profile",
+      "videoMode": "detect-before-arm-then-lock",
+      "audioInput": "embedded",
+      "captureAudioChannels": [
+        1,
+        2
+      ],
+      "transportAdapterId": null
+    }
+  ],
+  "detectionProfiles": [
+    {
+      "id": "conservative-alerts",
+      "requiresDeckCalibration": true,
+      "endMode": "alert-only",
+      "minimumRecordedSeconds": 300,
+      "blackCoverageRatio": 0.99,
+      "blackLevel": {
+        "referenceBitDepth": 8,
+        "referenceRange": "limited",
+        "maximumLumaCode": 24
+      },
+      "requireSilenceWithBlack": true,
+      "silenceRmsDbfs": -50,
+      "continuousEndConditionSeconds": 120,
+      "autoStopGraceSeconds": 30,
+      "signalLossAction": "alert-and-continue-to-timer",
+      "startRequiresValidSignal": true,
+      "startConfirmationSeconds": 2,
+      "alreadyPresentContentAction": "wait-for-new-transition",
+      "maximumArmedWaitMinutes": 15,
+      "analysisRegion": "calibrate-per-deck-preserve-full-master"
+    }
+  ],
+  "delivery": {
+    "enabled": true,
+    "scheduleEnabled": true,
+    "windows": [
+      {
+        "startDays": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "startLocal": "22:00",
+        "endLocal": "06:00",
+        "endDayOffset": 1,
+        "startInclusive": true,
+        "endExclusive": true
+      }
+    ],
+    "maximumConcurrentTransfers": 2,
+    "perTransferMiBps": 20,
+    "outsideWindowPerTransferMiBps": 2,
+    "aggregateMiBps": 40,
+    "allowNewOrdinaryTransfersOutsideWindow": false,
+    "continueActiveTransfersOutsideWindow": true,
+    "resumeAfterDisconnectRequiresAdmission": true,
+    "defaultGlobalOverrideElapsedHours": 12,
+    "fileOverrideLifetime": "until-delivery-completes-or-canceled",
+    "overridesBypass": [
+      "time-window-only"
+    ],
+    "verification": "destination-read-sha256",
+    "publishCompletionManifestLast": true,
+    "overwriteExisting": false
+  },
+  "qualityControl": {
+    "validateRequiredStreamsBeforeDelivery": true,
+    "backgroundDecodeValidation": true,
+    "generateQctoolsReport": true,
+    "qcliExecutable": "ASSIGN_VALIDATED_WINDOWS_BUILD",
+    "optionalQcMayCompleteAfterDelivery": false,
+    "maximumConcurrentAnalysisJobs": 1,
+    "deferHeavyAnalysisWhenCaptureResourcesConstrained": true
+  },
+  "notifications": {
+    "smtp": {
+      "enabled": false,
+      "host": "CONFIGURE_STATION_RELAY",
+      "port": 587,
+      "tlsMode": "starttls-required",
+      "authenticationMode": "configure-per-station-policy",
+      "sender": null,
+      "recipients": [],
+      "credentialReference": null
+    },
+    "immediateFailureAlerts": true,
+    "reports": {
+      "captureBatchComplete": true,
+      "allActiveRecordingGroupComplete": false,
+      "transferWindowClosed": true,
+      "deliveryCohortComplete": false,
+      "dailyDigestLocalTime": null
+    },
+    "useDurableOutbox": true,
+    "deduplicateByStableReportId": true
+  },
+  "configurationExport": {
+    "includeSecrets": false,
+    "includeQueueAndOperationalState": false,
+    "validateAndPreviewBeforeImport": true,
+    "applyTransactionally": true
+  },
+  "experimentalFeatures": {
+    "endOfTapeDetection": {
+      "enabled": false,
+      "label": "Experimental",
+      "enableForNewJobsOnly": true,
+      "disableCancelsPendingAutoStop": true,
+      "defaultEnabledAction": "alert-only"
+    }
+  },
+  "operationalHistory": {
+    "retentionDays": 90,
+    "purpose": "capture-qc-delivery-recovery-and-reports"
+  }
+}
